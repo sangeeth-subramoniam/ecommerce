@@ -49,7 +49,7 @@ class user_profile(models.Model):
     country = models.CharField(max_length=20, default="INDIA", blank=True)
     phone = models.CharField(max_length=10, blank=True)
     email = models.EmailField(max_length=50, blank=True)
-    type = models.CharField(max_length=5, choices = TYPE, default='ADM')
+    type = models.CharField(max_length=5, choices = TYPE, default='USR')
     website = models.URLField(blank=True)
     profile_picture = models.ImageField(upload_to='profile_pictures' , blank = True )
     bio = models.CharField(blank=True, max_length=300)

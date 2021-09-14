@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% extends "base.html" %}
+{% extends "base2.html" %}
 {% load static %}
 {% load bootstrap_tags %}
 
@@ -10,12 +10,16 @@ Signup
 {% endblock %}
 
 {% block body %}
+    <br><br>
+    <div class="container">
         {% if registered %}
             <h1>Thankyou for REGISTERING with us</h1>
+            <br>
 		<a href="{% url 'homepage:home' %}"> click here to continue </a>
 
         {% else %}
             <h3>PLEASE fill the registration form below</h3>
+            <br>
             <!-- user the enctype attribute because we are uploading images  -->
             <form enctype="multipart/form-data" method="POST">
                 <div class="container sign-form">
@@ -31,6 +35,6 @@ Signup
                 </div>
             </form>
         {% endif %}
-        </div>
+    </div>
 
 {% endblock %}

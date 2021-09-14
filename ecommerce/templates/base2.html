@@ -47,43 +47,9 @@
         </div>
     </nav>
 
+    {% block body %}
 
-
-    <!-- NAV OVER MAIN BODY HERE  -->
-    <div class="row">
-        <div class="col-md-2" style="border: 2px solid black;">
-            {% block leftnav %}
-
-
-            {% endblock leftnav %}
-        </div>
-
-        <div class="col-md-8" style="border: 2px solid black;">
-            {% block body %}
-
-
-            {% endblock body %}
-        </div>
-        <div class="col-md-2">
-            {% block rightnav %}
-
-
-            {% endblock rightnav %}
-        </div>
-    </div>
-    
-    
-    
-    
-
-    
-    
-
-
-
-
-
-
+    {% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

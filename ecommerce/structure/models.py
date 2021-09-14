@@ -114,7 +114,7 @@ class products(models.Model):
     available = models.BooleanField(default=True)
     currentorders = models.CharField(max_length=100 , blank=True)
     rank = models.IntegerField(blank=True , default=0)
-    picture = models.ImageField(upload_to = "product_pictures" , blank = True)
+    picture = models.ImageField(default = 'default.png' , upload_to = "product_pictures" , blank = True)
     #picture2 = models.ImageField(default = 'default.png' , upload_to = "product_pictures_resized" , blank = True)
 
     def __str__(self):

@@ -17,12 +17,6 @@ Homepage
         {% for cat in category %}
 
             <h4><a href="#" style="align-items: center;"><li>{{cat.categoryname}}</li></a></h4>
-            <h4><a href="#" style="align-items: center;"><li>{{cat.categoryname}}</li></a></h4>
-            <h4><a href="#" style="align-items: center;"><li>{{cat.categoryname}}</li></a></h4>
-            <h4><a href="#" style="align-items: center;"><li>{{cat.categoryname}}</li></a></h4>
-            <h4><a href="#" style="align-items: center;"><li>{{cat.categoryname}}</li></a></h4>
-            <h4><a href="#" style="align-items: center;"><li>{{cat.categoryname}}</li></a></h4>
-
         {% endfor %}
     </div>
 
@@ -101,25 +95,28 @@ Homepage
         <br>
         <h1 style="align-items: center;"> Welcome , Please signin to continue!!</h1> 
         <br>
-        <div class="container" style="background: #d3d3d3; height:2.2%; border-radius: 15px 15px 15px 15px; text-align: center;">
-            <div class="row center">                
-                <div class="col-lg-3 bodynav" style="margin-top: 1%;">
-                    <a style="color: inherit;" href="#">SORT ASCENDING</a>
-                </div>
-                
-                <div class="col-lg-3 bodynav" style="margin-top: 1%;">
-                    <a style="color: inherit;" href="#">SORT DESCENDING</a>
-                </div>
+        <form action="#">
+            {% csrf_token %}
+            <div class="container sub-nav-container" style="background: #d3d3d3; height:2.6%; border-radius: 15px 15px 15px 15px; text-align: center; " >
+                <div class="row center">
+                        <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                            <input class="form-control maniplulate-button" type="button" value="sort_Asc" name="manipulation_type">
+                        </div>
+                    
+                    <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                        <input class="form-control maniplulate-button" type="button" value="sort_desc" name="manipulation_type">
+                    </div>
 
-                <div class="col-lg-3 bodynav" style="margin-top: 1%;">
-                    <a style="color: inherit;" href="#">NEW PRODUCTS</a>
-                </div>
+                    <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                        <input class="form-control maniplulate-button" type="button" value="recent" name="manipulation_type">
+                    </div>
 
-                <div class="col-lg-3 bodynav" style="margin-top: 1%;">
-                    <a style="color: inherit;" href="#">MOST POPULAR</a>
+                    <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                        <input class="form-control maniplulate-button" type="button" value="most popular" name="manipulation_type">
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
 
         <br><br><br>
         <hr>

@@ -115,6 +115,9 @@ class products(models.Model):
     currentorders = models.CharField(max_length=100 , blank=True)
     rank = models.IntegerField(blank=True , default=0)
     picture = models.ImageField(default = 'default.png' , upload_to = "product_pictures" , blank = True)
+    likes = models.IntegerField(default=0 , blank=True)
+    dislikes = models.IntegerField(default=0 , blank=True)
+    created_at = models.DateTimeField(null=True , auto_now_add=True)
     #picture2 = models.ImageField(default = 'default.png' , upload_to = "product_pictures_resized" , blank = True)
 
     def __str__(self):

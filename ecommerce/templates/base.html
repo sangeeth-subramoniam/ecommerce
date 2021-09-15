@@ -16,7 +16,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Ecom</a>
+        <a class="navbar-brand" href="{% url 'homepage:home' %}">Ecom</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -50,21 +50,22 @@
 
 
     <!-- NAV OVER MAIN BODY HERE  -->
+
     <div class="row">
-        <div class="col-md-2" style="border: 2px solid black;">
+        <div class="col-md-2" style="border: 2px solid black; min-height: 1350px;">
             {% block leftnav %}
 
 
             {% endblock leftnav %}
         </div>
 
-        <div class="col-md-8" style="border: 2px solid black;">
+        <div class="col-md-8" style="border: 2px solid black;  min-height: 1350px;">
             {% block body %}
 
 
             {% endblock body %}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2" style="border: 2px solid black;  min-height: 1350px;">
             {% block rightnav %}
 
 

@@ -69,5 +69,6 @@ def signin(request):
 
 @login_required
 def signout(request):
+    request.session.clear()
     logout(request)
     return HttpResponseRedirect(reverse("homepage:home"))

@@ -5,7 +5,7 @@
 
 {% block title %}
 
-1categories
+categories
 
 {% endblock %}
 
@@ -100,9 +100,9 @@
 {% block body %}
 
         <br>
-        <h1 style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
+        <h1 id="top-section" style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
         <br>
-        <form enctype="multipart/form-data" method="POST">
+        <form action = "{% url 'homepage:home' %}" enctype="multipart/form-data" method="POST">
             <div class="container sign-form">
                 {% csrf_token %}
                 
@@ -117,19 +117,19 @@
             {% csrf_token %}
             <div class="container sub-nav-container" style="background: #d3d3d3; height:2.6%; border-radius: 15px 15px 15px 15px; text-align: center; " >
                 <div class="row center">
-                        <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                        <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
                             <input class="form-control maniplulate-button" type="submit" value="sort_asc" name="manipulation_type">
                         </div>
                     
-                    <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
                         <input class="form-control maniplulate-button" type="submit" value="sort_desc" name="manipulation_type">
                     </div>
 
-                    <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
                         <input class="form-control maniplulate-button" type="submit" value="recent" name="manipulation_type">
                     </div>
 
-                    <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
                         <input class="form-control maniplulate-button" type="submit" value="most popular" name="manipulation_type">
                     </div>
                 </div>
@@ -143,7 +143,7 @@
             
             {% for pdt in product %}
                 <div class="col-lg-4 pdt-box">
-                    <img class="thumbnail" src={{pdt.picture.url}}>
+                    <img class="thumbnail" src={{pdt.picture.url}} >
                     <div class="box-element product">
                         <h6><strong>Product : {{pdt.productname}} - {{pdt.created_at}}</strong></h6>
                         <hr>

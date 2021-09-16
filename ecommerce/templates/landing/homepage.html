@@ -100,7 +100,7 @@ Homepage
 {% block body %}
 
         <br>
-        <h1 style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
+        <h1 id="top-section" style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
         <br>
         <form enctype="multipart/form-data" method="POST">
             <div class="container sign-form">
@@ -113,52 +113,76 @@ Homepage
             </div>
         </form>
         <br>
-        <form action="#" method="post">
+        <form action="{% url 'homepage:home' %}" method="post">
             {% csrf_token %}
-            <div class="container sub-nav-container" style="background: #d3d3d3; height:2.6%; border-radius: 15px 15px 15px 15px; text-align: center; " >
+            <div class="container sub-nav-container" style="background: #d3d3d3; height:3%; border-radius: 15px 15px 15px 15px; text-align: center; " >
                 <div class="row center">
-                        <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
-                            <input class="form-control maniplulate-button" type="submit" value="sort_Asc" name="manipulation_type">
+                        <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
+                            <input class="form-control maniplulate-button " type="submit" value="sort_Asc" name="manipulation_type">
                         </div>
                     
-                    <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
                         <input class="form-control maniplulate-button" type="submit" value="sort_desc" name="manipulation_type">
                     </div>
 
-                    <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
                         <input class="form-control maniplulate-button" type="submit" value="recent" name="manipulation_type">
                     </div>
 
-                    <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
                         <input class="form-control maniplulate-button" type="submit" value="most popular" name="manipulation_type">
                     </div>
                 </div>
             </div>
         </form>
 
+
+        <br><br>
+        <div class="pagenumber">
+            <div class="row">
+                <div class="col-md-4"  style="text-align: right;">
+                    {% if product.has_previous %}
+                        <a href="{% url 'homepage:home' %}?page={{product.previous_page_number }}"> <b style="text-align: right;"><</b> </a>
+                    {%endif%}
+                </div>
+
+                <div class="col-md-4">
+                    <p style="text-align: center;">Showing Page : {{product.number}} / {{pgcount}} ({{per_page}} results)</p>
+                </div>
+        
+                <div class="col-md-4"  style="text-align: left;">
+                    {% if product.has_next %}
+                        <a href="{% url 'homepage:home' %}?page={{product.next_page_number}}"> <b>></b> </a>
+                    {%endif%}
+                </div>
+        
+            </div>
+        </div>
+        
+        
         <br><br><br>
         <hr>
 
-        <div class="row">
+        <div class="row" style="background: #faf9f9;">
             
             {% for pdt in product %}
-                <div class="col-lg-4 pdt-box">
-                    <img class="thumbnail" src={{pdt.picture.url}}>
-                    <div class="box-element product">
-                        <h6><strong>Product : {{pdt.productname}} - {{pdt.created_at}}</strong></h6>
-                        <hr>
+                <a href="{% url 'products:home' pdt.productid %}">
+                    <div class="col-lg-4 pdt-box">
+                        <img class="thumbnail" src={{pdt.picture.url}}>
+                        <div class="box-element product">
+                            <h6><strong>Product : {{pdt.productname}} - {{pdt.created_at}}</strong></h6>
+                            <hr>
 
-                        <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
-                        <a class="btn btn-outline-success" href="#">View</a>
-                        <h4 style="display: inline-block; float: right"><strong>${{pdt.unit_price}}</strong></h4>
+                            <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
+                            <a class="btn btn-outline-success" href="#">View</a>
+                            <h4 style="display: inline-block; float: right"><strong>${{pdt.unit_price}}</strong></h4>
 
+                        </div>
                     </div>
-                </div>
+                </a>
                 <br> 
                 <br><br><br><br>
             {% endfor %}
         </div>
-
-
 {% endblock %}
 </div>

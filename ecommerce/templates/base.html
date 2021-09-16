@@ -11,12 +11,15 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'homepage:home' %}">Ecom</a>
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> -->
+        <nav class="navbar navbar-expand-lg" style="background-color: #485e79;">
+        <a class="navbar-brand" href="{% url 'homepage:home' %}"> <h1 style="font-family: comicsans; color: white;" >SHOPオンライン</h1></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,7 +55,7 @@
     <!-- NAV OVER MAIN BODY HERE  -->
 
     <div class="row">
-        <div class="col-md-2" style="border: 2px solid black; min-height: 1350px;">
+        <div class="col-md-2" style="border: 2px solid black; min-height: 1550px;">
             {% block leftnav %}
 
 
@@ -72,6 +75,11 @@
             {% endblock rightnav %}
         </div>
     </div>
+
+    <br><br>
+            <div style="background-color: #232F3E; height: 100%;">
+                {% include 'landing/end.html' %}
+            </div>
     
     
     

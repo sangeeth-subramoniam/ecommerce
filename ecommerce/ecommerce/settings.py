@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'registration',
     'structure',
     'homepage',
+    'products',
 ]
 
 MIDDLEWARE = [

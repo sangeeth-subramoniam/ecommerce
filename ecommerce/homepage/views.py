@@ -8,6 +8,8 @@ from django.db.models import Q
 
 from .forms import searchproductform
 
+from django.core.paginator import Paginator
+
 # Create your views here.
 def home(request):
 
@@ -23,10 +25,21 @@ def home(request):
 
             form = searchproductform()
 
+
+            per_page = 12
+            product_paginator = Paginator(product , per_page)
+            page_num = request.GET.get('page')
+            product_page = product_paginator.get_page(page_num)
+
+
             context = {
+
+                'product' : product_page,
+                'per_page' : per_page,
+                'pgcount' : product_paginator.num_pages,
                 'curr_user' : curruser,
                 'category' : category,
-                'product' : product,
+                #'product' : product,
                 'form' : form
             }
             return render(request,'landing/homepage.html',context)
@@ -166,6 +179,7 @@ def category(request,pk):
             product = products.objects.filter(category__categoryid = cat.categoryid)
 
             form = searchproductform()
+            form.fields['productname'].initial = cat.categoryname
 
             context = {
                 'curr_user' : curruser,
@@ -198,6 +212,7 @@ def category(request,pk):
             print('sort from categoty page ')
 
             form = searchproductform()
+            form.fields['productname'].initial = cat.categoryname
 
             manipulate_type = request.POST.get('manipulation_type')
             print('the manipulation type is ', manipulate_type , 'and it is done in the homepage ')

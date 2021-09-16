@@ -1,4 +1,4 @@
-from structure.models import categories
+from structure.models import categories, orderdetails
 from django.shortcuts import redirect, render
 from registration.models import user_profile
 from structure.models import categories,products
@@ -23,6 +23,8 @@ def home(request):
             category = categories.objects.all()
             product = products.objects.all()
 
+            
+
             form = searchproductform()
 
 
@@ -31,6 +33,8 @@ def home(request):
             page_num = request.GET.get('page')
             product_page = product_paginator.get_page(page_num)
 
+            cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
+            
 
             context = {
 
@@ -40,6 +44,7 @@ def home(request):
                 'curr_user' : curruser,
                 'category' : category,
                 #'product' : product,
+                'cart_count' : cart_count ,
                 'form' : form
             }
             return render(request,'landing/homepage.html',context)

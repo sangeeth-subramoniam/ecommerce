@@ -145,27 +145,29 @@ Product-Home
         <div class="container" >
 
             <hr>
+            {% for orderdetailspdt in orderdetails %}
+
                 <div class="container" style="overflow: hidden; background: #faf9f9;">
                     <div class="row">
                         <div class="col-lg-7">
-                            <h1 style=" text-align: left; margin-left: 10%; margin-top: 1%; text-transform: uppercase;">{{product.productname}}</h1><br>
-                            <img class="product-display" src="{{ product.picture.url }}" alt="error" style="width:70%; margin: 0% 0% 0% 10%;">
+                            <h1 style=" text-align: left; margin-left: 10%; margin-top: 1%; text-transform: uppercase;">{{orderdetailspdt.product.productname}}</h1><br>
+                            <img class="product-display" src="{{ orderdetailspdt.product.picture.url }}" alt="error" style="width:70%; margin: 0% 0% 0% 10%;">
                         </div>
                         <div class="col-lg-5" style="text-align: left; margin: 5% 0% 0% -5%;">
                             
                             <span>
-                                <button class="btn btn-primary" style="width: 100%;"> ADD TO CART </button>
+                                <button class="btn btn-warning" style="width: 100%;"> EDIT QUANTITY </button>
                                 <br> <br>
-                                <button class="btn btn-success" style="width: 100%;"> BUY NOW </button>
+                                <button class="btn btn-danger" style="width: 100%;"> REMOVE FROM CART </button>
                             </span>
                             <br><br>
                             
-                            <b>productname :</b> <h1 style="text-transform: capitalize;">{{product.productname}}</h1>
+                            <b>productname :</b> <h1 style="text-transform: capitalize;">{{orderdetailspdt.product.productname}}</h1>
                             <br>
-                            <b>productid:</b> <h1>{{product.productid}}</h1>                            
-                            <b>product price :</b> <h1>{{product.unit_price}}</h1>
-                            <b>product stock :</b> <h1>{{product.instock}}</h1>
-                            <b>product desc :</b> <h1>{{product.productdescription}}</h1>
+                            <b>productid:</b> <h1>{{orderdetailspdt.product.productid}}</h1>                            
+                            <b>product price :</b> <h1>{{orderdetailspdt.product.unit_price}}</h1>
+                            <b>product stock :</b> <h1>{{orderdetailspdt.product.instock}}</h1>
+                            <b>product desc :</b> <h1>{{orderdetailspdt.product.productdescription}}</h1>
                             <br><br>
                             <span>
                                 <button class="fa fa-thumbs-up btn btn-success" style="margin : 5px;"> LIKE </button>
@@ -177,15 +179,14 @@ Product-Home
                     
                     
                 </div>
-            <br>
-            <hr>
-            <br><br>
-                <h1>DESCRIPTION :</h1>
+                <hr><br><br><br>
+
+                {% endfor %}
+                <button class="btn btn-success" style="width: 80%; margin: 0 10%;"> PLACE ORDER </button><br>
                 <br>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ipsam accusantium vero molestias vitae quidem aut libero. Illum eaque explicabo suscipit ipsa quae voluptas est blanditiis impedit, consequuntur, eum nihil error nobis dolore hic sed fugit porro molestias deserunt unde, aspernatur sapiente eius! Sequi non blanditiis aliquid ipsa, est obcaecati? Soluta veritatis modi qui eveniet nobis repellendus quos sapiente distinctio atque dicta saepe deleniti voluptatibus ut quo, ea perferendis tenetur quasi quia maxime illum odio facilis repudiandae! Provident ullam exercitationem dicta, quo quos perspiciatis vel quis sapiente cumque asperiores consequatur! Laboriosam inventore illum iste perspiciatis ullam. Fugiat optio quod repellat suscipit voluptates totam voluptate esse tempora dicta iste. Culpa id nemo quod numquam modi similique veniam! Quod aliquam aut autem, assumenda dicta eligendi unde architecto, beatae quidem optio nesciunt, est consequatur magni numquam culpa nihil. Explicabo reiciendis soluta nisi, voluptas quo ea esse, cupiditate eligendi nostrum nihil accusantium error, dolorum veritatis illum. Quia quis adipisci voluptatum omnis consectetur cum vero, sint eligendi laborum repudiandae incidunt. Sint possimus accusamus ducimus earum reprehenderit delectus similique perspiciatis quas, pariatur quidem voluptatum iusto accusantium itaque molestias at alias autem, laboriosam obcaecati sed? Facere inventore fuga ex? Voluptas exercitationem cumque maxime, ut repudiandae similique minima?</p>
-                
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, obcaecati sunt. Praesentium molestias repudiandae temporibus facere nemo nesciunt laudantium iure consectetur accusantium culpa voluptatem aperiam est quas expedita, doloremque, at minus magnam ratione alias exercitationem facilis distinctio velit. Voluptatem reiciendis, neque aliquid quae iure saepe. Sapiente officia ad tempore omnis aut laudantium deserunt ratione pariatur delectus exercitationem fugit adipisci ea voluptas modi quod consectetur minima, obcaecati facilis! Repellendus nam facilis reiciendis hic, ut recusandae. Quo cumque officia modi a cupiditate amet alias quaerat laborum magnam delectus ratione inventore cum soluta omnis ut error perspiciatis beatae nihil porro autem, nam deleniti? </p>
                 <br>
+            
+            
                 <h1>SIMILAR PRODUCTS :</h1>
                 <hr>
 
@@ -207,7 +208,7 @@ Product-Home
                             </div>
                         </a>
                         <br> 
-                        <br><br><br><br>
+                        <br><br>
                     {% endfor %}
                 </div>
             <br>

@@ -41,10 +41,12 @@
                     <a href="{% url 'registration:signup' %}" class="btn btn-warning">Signup</a>
                 {% endif %}
 
-                <a href="#">
+                <a href="{% url 'cart:home' %}">
                     <img id="cart-icon" src="{% static 'img/cart.png' %}">
                 </a>
-                <p id="cart-total">0</p>
+                <p id="cart-total" style="background-color: red; ">{{cart_count}}</p>
+                <!-- <p id="cart-total">0</p> -->
+                
 
             </div>
         </div>

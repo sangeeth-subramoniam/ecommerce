@@ -100,7 +100,7 @@ Homepage
 {% block body %}
 
         <br>
-        <h1 id="top-section" style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
+        <h1 id="top-section" style="align-items: center;  color: #485e79;"> Welcome , {{user.username}}!!</h1> 
         <br>
         <form enctype="multipart/form-data" method="POST">
             <div class="container sign-form">
@@ -115,22 +115,22 @@ Homepage
         <br>
         <form action="{% url 'homepage:home' %}" method="post">
             {% csrf_token %}
-            <div class="container sub-nav-container" style="background: #d3d3d3; height:3%; border-radius: 15px 15px 15px 15px; text-align: center; " >
+            <div class="container sub-nav-container" style="background: #d3d3d3; height:3%; border-radius: 15px 15px 15px 15px; text-align: center;" >
                 <div class="row center">
                         <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
-                            <input class="form-control maniplulate-button " type="submit" value="sort_Asc" name="manipulation_type">
+                            <input style="background-color: #485e79;" class="form-control maniplulate-button " type="submit" value="sort_Asc" name="manipulation_type">
                         </div>
                     
                     <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
-                        <input class="form-control maniplulate-button" type="submit" value="sort_desc" name="manipulation_type">
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="sort_desc" name="manipulation_type">
                     </div>
 
                     <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
-                        <input class="form-control maniplulate-button" type="submit" value="recent" name="manipulation_type">
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="recent" name="manipulation_type">
                     </div>
 
                     <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
-                        <input class="form-control maniplulate-button" type="submit" value="most popular" name="manipulation_type">
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="most popular" name="manipulation_type">
                     </div>
                 </div>
             </div>
@@ -142,7 +142,7 @@ Homepage
             <div class="row">
                 <div class="col-md-4"  style="text-align: right;">
                     {% if product.has_previous %}
-                        <a href="{% url 'homepage:home' %}?page={{product.previous_page_number }}"> <b style="text-align: right;"><</b> </a>
+                        <a href="{% url 'homepage:home' %}?page={{product.previous_page_number }}"> <b style="text-align: right; color: #485e79; text-decoration: none;"><</b> </a>
                     {%endif%}
                 </div>
 
@@ -150,7 +150,7 @@ Homepage
                     <p style="text-align: center;">Showing Page : {{product.number}} / {{pgcount}} ({{per_page}} results)</p>
                 </div>
         
-                <div class="col-md-4"  style="text-align: left;">
+                <div class="col-md-4"  style="text-align: left; text-decoration: none; color: #485e79;">
                     {% if product.has_next %}
                         <a href="{% url 'homepage:home' %}?page={{product.next_page_number}}"> <b>></b> </a>
                     {%endif%}

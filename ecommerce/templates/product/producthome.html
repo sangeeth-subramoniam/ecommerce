@@ -109,7 +109,7 @@ Product-Home
                 {{ form|as_bootstrap  }}
             
                 <!-- {{ user_profileform.as_p }} -->
-                <input type="submit" class = 'btn btn-secondary' name="submit" value="Search">
+                <input type="submit" class = 'btn btn-outline-secondary' name="submit" value="Search">
             </div>
         </form>
         <br>
@@ -154,7 +154,7 @@ Product-Home
                         <div class="col-lg-5" style="text-align: left; margin: 5% 0% 0% -5%;">
                             
                             <span>
-                                <button class="btn btn-primary" style="width: 100%;"> ADD TO CART </button>
+                                <a href="{% url 'products:addtocart' product.productid %}"><button class="btn btn-primary" style="width: 100%;"> ADD TO CART </button></a>
                                 <br> <br>
                                 <button class="btn btn-success" style="width: 100%;"> BUY NOW </button>
                             </span>
@@ -167,11 +167,12 @@ Product-Home
                             <b>product stock :</b> <h1>{{product.instock}}</h1>
                             <b>product desc :</b> <h1>{{product.productdescription}}</h1>
                             <br><br>
-                            <span>
+                            <span style="padding: 20px; width: 100%;">
                                 <button class="fa fa-thumbs-up btn btn-success" style="margin : 5px;"> LIKE </button>
                                 <button class="fas fa-share btn btn-warning" style="margin : 5px;"> Share </button>
                                 <button class="fas fa-flag btn btn-danger" style="margin : 5px;"> REPORT </button>
                             </span>
+                            <br><br>
                         </div>
                     </div>
                     
@@ -199,7 +200,7 @@ Product-Home
                                     <h6><strong>Product : {{rpdt.productname}} - {{rpdt.created_at}}</strong></h6>
                                     <hr>
         
-                                    <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
+                                    <a href="#"></a> <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
                                     <a class="btn btn-outline-success" href="#">View</a>
                                     <h4 style="display: inline-block; float: right"><strong>${{rpdt.unit_price}}</strong></h4>
         

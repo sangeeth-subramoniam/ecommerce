@@ -109,7 +109,7 @@ Homepage
                 {{ form|as_bootstrap  }}
             
                 <!-- {{ user_profileform.as_p }} -->
-                <input type="submit" class = 'btn btn-secondary' name="submit" value="Search">
+                <input type="submit" class = 'btn btn-outline-secondary' name="submit" value="Search">
             </div>
         </form>
         <br>
@@ -118,7 +118,7 @@ Homepage
             <div class="container sub-nav-container" style="background: #d3d3d3; height:3%; border-radius: 15px 15px 15px 15px; text-align: center;" >
                 <div class="row center">
                         <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
-                            <input style="background-color: #485e79;" class="form-control maniplulate-button " type="submit" value="sort_Asc" name="manipulation_type">
+                            <input style="background-color: #485e79;" class="form-control maniplulate-button " type="submit" value="sort_asc" name="manipulation_type">
                         </div>
                     
                     <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
@@ -160,7 +160,7 @@ Homepage
         </div>
         
         
-        <br><br><br>
+        <br>
         <hr>
 
         <div class="row" style="background: #faf9f9;">
@@ -172,14 +172,13 @@ Homepage
                         <div class="box-element product">
                             <h6><strong>Product : {{pdt.productname}} - {{pdt.created_at}}</strong></h6>
                             <hr>
-
-                            <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
-                            <a class="btn btn-outline-success" href="#">View</a>
+                </a>                
+                            <a href="{% url 'products:addtocart' pdt.productid %}"> <button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
+                            <a class="btn btn-outline-success" href="{% url 'products:home' pdt.productid %}">View</a>
                             <h4 style="display: inline-block; float: right"><strong>${{pdt.unit_price}}</strong></h4>
 
                         </div>
                     </div>
-                </a>
                 <br> 
                 <br><br><br><br>
             {% endfor %}

@@ -60,15 +60,7 @@ Product-Home
 
     <div class="right-nav">
         <hr>
-
-        <div style="border: 2px solid black; padding:15px; margin: 0px 0px 0px 0px; margin-right: 10px; margin-left: -1px;">
-            <h3> <u> ORDER SUMMARY : </u> </h3>
-            <br>
-            <h4>Total items : {{cart_count}}</h4> <br>
-            <h4>Total cost : {{totalcost}}</h4><br><br>
-            <button class="btn btn-success" style="width: 100%;">Place Order</button>
-        </div>
-        
+        <h1> This comes from template betsu </h1>
 
         <br><br><br><br>
 
@@ -108,7 +100,7 @@ Product-Home
 {% block body %}
 
         <br>
-        <h1 id="top-section" style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
+        <h1 id="top-section" style="align-items: center;"> Please change the cart , {{user.username}}!!</h1> 
         <br>
         <form action = " {% url 'homepage:home' %}" enctype="multipart/form-data" method="POST">
             <div class="container sign-form">
@@ -122,77 +114,46 @@ Product-Home
         </form>
         <br>
 
-        <!--
-            <form action="#" method="post">
-                {% csrf_token %}
-                <div class="container sub-nav-container" style="background: #d3d3d3; height:2.6%; border-radius: 15px 15px 15px 15px; text-align: center; " >
-                    <div class="row center">
-                            <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
-                                <input class="form-control maniplulate-button" type="submit" value="sort_asc" name="manipulation_type">
-                            </div>
-                        
-                        <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
-                            <input class="form-control maniplulate-button" type="submit" value="sort_desc" name="manipulation_type">
-                        </div>
-
-                        <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
-                            <input class="form-control maniplulate-button" type="submit" value="recent" name="manipulation_type">
-                        </div>
-
-                        <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
-                            <input class="form-control maniplulate-button" type="submit" value="most popular" name="manipulation_type">
-                        </div>
-                    </div>
-                </div>
-            </form>
-        <br><br><br>
-        <hr>
-        -->
-
-
         <div class="container" >
 
-            <hr>
-            {% for orderdetailspdt in orderdetails %}
+        <br>
 
-                <div class="container" style="overflow: hidden; background: #faf9f9;">
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <h1 style=" text-align: left; margin-left: 10%; margin-top: 1%; text-transform: uppercase;">{{orderdetailspdt.product.productname}}</h1><br>
-                            <img class="product-display" src="{{ orderdetailspdt.product.picture.url }}" alt="error" style="width:70%; margin: 0% 0% 0% 10%;">
-                        </div>
-                        <div class="col-lg-5" style="text-align: left; margin: 5% 0% 0% -5%;">
+        <div class="row">
+            <div style ="background-color: #f7f4f4;"  class="col-lg-5">
+                <img class="pdt-box " style="width: 100%; height : 80%; margin: 10% 0%; border-radius: 30px;" src="{{currentorderdetail.product.picture.url}}" alt="error loading image">
+            </div>
+            <div class="col-lg-6">
+                <div style="height: 30%; margin : 30% 0%">
+                    <div class="orderupdateform" style="border: 2px solid black; margin: 5px; padding: 30px;">
+                        {% if orderdetailupdateform.errors %}
+                            {% for field in orderdetailupdateform %}
+                                {% for error in field.errors %} 
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+                        <form enctype="multipart/form-data" method="POST" onSubmit="return validateForm()">
+                            <div class="container sign-form">
+                                {% csrf_token %}
+                                
+                                {{ orderdetailupdateform|as_bootstrap  }}
                             
-                            <span>
-                                <a href="{% url 'cart:updatecart' orderdetailspdt.orderdetailid %}"><button class="btn btn-warning fa fa-shopping-cart" style="width: 100%;"> EDIT QUANTITY </button></a>
-                                <br> <br>
-                                <a href="{% url 'cart:removefromcart' orderdetailspdt.orderdetailid  %}"><button class="btn btn-danger fas fa-cart-arrow-down" style="width: 100%;" onclick="return confirm('Are you sure?')"> REMOVE FROM CART </button></a>
-                            </span>
-                            <br><br>
-                            
-                            <b>productname :</b> <h1 style="text-transform: capitalize;">{{orderdetailspdt.product.productname}}</h1>
-                            <br>
-                            <b>Quantity:</b> <h1>{{orderdetailspdt.quantity}}</h1>                            
-                            <b>product price :</b> <h1>{{orderdetailspdt.product.unit_price}}</h1>
-                            <b>In stock :</b> <h1>{{orderdetailspdt.product.instock}}</h1>
-                            <b>product desc :</b> <h1>{{orderdetailspdt.product.productdescription}}</h1>
-                            <br><br>
-                            <span>
-                                <button class="fa fa-thumbs-up btn btn-success" style="margin : 5px;"> LIKE </button>
-                                <button class="fas fa-share btn btn-warning" style="margin : 5px;"> Share </button>
-                                <button class="fas fa-flag btn btn-danger" style="margin : 5px;"> REPORT </button>
-                            </span>
-                        </div>
+                                <!-- {{ user_profileform.as_p }} -->
+                                <input type="submit" class = 'btn btn-warning' name="submit" value="UPDATE" onclick="return confirm (' Are you sure ? ') ">
+                                <button class = 'btn btn-primary' name="go to cart"> Cancel </button>
+                            </div>
+                        </form>
                     </div>
-                    
-                    
                 </div>
-                <hr><br><br><br>
+            </div>
+        </div>
 
-                {% endfor %}
-                <button class="btn btn-primary" style="width: 80%; margin: 0 10%;"> CONTINUE SHOPPING </button><br><br>
-                <button class="btn btn-success" style="width: 80%; margin: 0 10%;"> PLACE ORDER </button><br>
-                <br>
+        <br>
+
+            <hr>
+
                 <br>
             
             
@@ -225,6 +186,20 @@ Product-Home
             <hr>
 
             <br><br>
+
+
+
+            <script>
+                function checkform(){
+                    var quantity= document.getElementById("id_quantity").value;
+
+                    if(quantity=== '' || quantity < 1) {
+                        alert("Quantity should be greater or equal to 1");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
             
 
 

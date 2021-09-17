@@ -53,10 +53,12 @@ def home(request):
 
             product = products.objects.all()
             category = categories.objects.all()
+            cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
 
             context = {
                 'product' : product,
-                'category': category
+                'category': category,
+                'cart_count' : cart_count
             }
             return render(request,'landing/not_signed_in.html', context)
     
@@ -88,11 +90,13 @@ def home(request):
                 print('the requesttype is ', request.method ,' and the search_term is ' , search_term , 'params are ' , request.POST)
                 form = searchproductform()
                 form.fields["productname"].initial = search_term
+                cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
 
                 context = {
                     'product' : product,
                     'category': category,
-                    'form' : form
+                    'form' : form,
+                    'cart_count' : cart_count
                 }
                 return render(request,'landing/storesearch.html',context)
 
@@ -150,12 +154,15 @@ def home(request):
 
                     else:
                         product = products.objects.all()
+            
+            cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
 
             category = categories.objects.all()
             context = {
             'product' : product,
             'category': category,
-            'form' : form
+            'form' : form,
+            'cart_count' : cart_count
             }
             return render(request,'landing/storesearch.html',context)
 
@@ -185,22 +192,26 @@ def category(request,pk):
 
             form = searchproductform()
             form.fields['productname'].initial = cat.categoryname
+            cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
 
             context = {
                 'curr_user' : curruser,
                 'category' : category,
                 'product' : product,
-                'form' : form
+                'form' : form,
+                'cart_count' : cart_count
             }
             return render(request,'landing/category.html',context)
 
         else:
             product = products.objects.all()
             category = categories.objects.all()
+            cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
 
             context = {
                 'product' : product,
-                'category': category
+                'category': category,
+                'cart_count' : cart_count
             }
             return render(request,'landing/not_signed_in.html', context)
 
@@ -239,10 +250,13 @@ def category(request,pk):
 
         category = categories.objects.all()
 
+        cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
+
         context = {
             'product' : product,
             'category': category,
-            'form' : form
+            'form' : form,
+            'cart_count' : cart_count
         }
         return render(request,'landing/category.html',context)
 

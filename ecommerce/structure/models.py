@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.aggregates import Count
 from PIL import Image
+
+from django.core.validators import  MinValueValidator
 #from payment.models import payment
 
 # Create your models here.
@@ -32,13 +34,14 @@ class orders(models.Model):
     customerid = models.ForeignKey(User, on_delete=models.CASCADE)
     ordernumber = models.CharField(max_length=100, blank=True)
     paymentid = models.ForeignKey(payment, on_delete=models.CASCADE)
-    orderdate = models.DateTimeField(auto_created=True)
+    orderdate = models.DateTimeField(auto_created=True , blank = True)
     totalcost = models.IntegerField(blank=True , default=0)
     shipment_date = models.CharField(max_length=30, default='7 days')
     transactionstatus = models.BooleanField(default=False,blank=True)
     deliverystatus = models.BooleanField(default=False, blank=True)
     deleted = models.BooleanField(default=False, blank=True)
     paymentdate = models.DateTimeField(blank=True)
+    order_complete = models.BooleanField(default=False , blank=True)
 
 
     def __str__(self):
@@ -136,12 +139,11 @@ class products(models.Model):
 class orderdetails(models.Model):
     orderdetailid = models.AutoField(primary_key=True)
     orderdetailnumber = models.IntegerField(blank=True)
-    order = models.ForeignKey(orders , on_delete=models.CASCADE)
+    order = models.ForeignKey(orders , on_delete=models.CASCADE , blank=True)
     product = models.ForeignKey(products , on_delete=models.CASCADE)
     price = models.IntegerField()
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(validators=[MinValueValidator(1)])
     discount = models.IntegerField(blank=True , default=0)
-    total = models.IntegerField()
     date = models.DateTimeField(auto_now=True)
 
     def __str__(self):

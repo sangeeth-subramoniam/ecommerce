@@ -109,7 +109,7 @@ categories
                 {{ form|as_bootstrap  }}
             
                 <!-- {{ user_profileform.as_p }} -->
-                <input type="submit" class = 'btn btn-secondary' name="submit" value="Search">
+                <input type="submit" class = 'btn btn-outline-secondary' name="submit" value="Search">
             </div>
         </form>
         <br>
@@ -142,20 +142,22 @@ categories
         <div class="row">
             
             {% for pdt in product %}
+            <a href="{% url 'products:home' pdt.productid %}">
                 <div class="col-lg-4 pdt-box">
                     <img class="thumbnail" src={{pdt.picture.url}} >
                     <div class="box-element product">
                         <h6><strong>Product : {{pdt.productname}} - {{pdt.created_at}}</strong></h6>
                         <hr>
 
-                        <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
-                        <a class="btn btn-outline-success" href="#">View</a>
+                        <a href="{% url 'products:addtocart' pdt.productid %}"><button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
+                        <a class="btn btn-outline-success" href="{% url 'products:home' pdt.productid %}">View</a>
                         <h4 style="display: inline-block; float: right"><strong>${{pdt.unit_price}}</strong></h4>
 
                     </div>
                 </div>
                 <br> 
                 <br><br><br><br>
+            </a>
             {% endfor %}
         </div>
 

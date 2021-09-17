@@ -6,6 +6,8 @@ from django.conf.urls.static import static
 app_name = 'cart'
 urlpatterns = [
     path('', views.home , name = "home"),
+    path('updatecart/<pk>/', views.updatecart , name = "updatecart"),
+    path('removefromcart/<pk>/', views.removefromcart , name = "removefromcart"),
 
     #path('options/<str:pk>',views.options, name = 'options'),
 

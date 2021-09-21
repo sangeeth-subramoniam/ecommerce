@@ -164,7 +164,7 @@ Product-Home
                                 <b>Placed by :</b> {{order.customerid}} <br>
                                 <b>Date :</b> {{order.orderdate}} <br>
                                 <b>Status :</b> {{order.order_complete}} <br>
-                                <b>Total Amount :</b> {{order.totalcost}} <br>
+                                <b>Total Amount :</b> ₹{{order.totalcost}} <br>
                                 {% if order.deliverystatus %}
                                     <b>Delivery Status :</b> Delivered Successfully !! <br>
                                 {% else %}
@@ -177,8 +177,11 @@ Product-Home
                                 
                                 {% for corres_pdts in corres_order_details %}
 
+                                    
                                     {% if corres_pdts.order.orderid == order.orderid %}
-                                        <img style = " height: 50px; width: 80px; margin:10px" src={{corres_pdts.product.picture.url}} alt="broken">
+                                        <a href="{% url 'products:home' corres_pdts.product.productid  %}">
+                                            <img style = " height: 50px; width: 80px; margin:10px" src={{corres_pdts.product.picture.url}} alt="broken">
+                                        </a>
                                         
                                     {% endif %}
 

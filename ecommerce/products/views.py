@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from structure.models import categories, orders, products , orderdetails, payment
+from structure.models import categories, orders, products , orderdetails, payment , like
 from homepage.forms import searchproductform
 from django.db.models import Q
 from datetime import datetime
@@ -17,6 +17,10 @@ def home(request,pk):
     related = products.objects.all()
     cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
 
+    like_count = like.objects.filter(liked_product__productid = pk ).count()
+
+
+
     print('the pdt is ', product)
 
     context = {
@@ -24,7 +28,8 @@ def home(request,pk):
         'form' : form,
         'category' : category,
         'related_items' : related,
-        'cart_count' : cart_count
+        'cart_count' : cart_count, 
+        'like_count' : like_count
     }
 
 

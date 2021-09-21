@@ -175,7 +175,7 @@ Homepage
 
                     <a href="{% url 'products:addtocart' pdt.productid %}"> <button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
                     <a class="btn btn-outline-success" href="{% url 'products:home' pdt.productid %}">View</a>
-                    <h4 style="display: inline-block; float: right"><strong>${{pdt.unit_price}}</strong></h4>
+                    <h4 style="display: inline-block; float: right"><strong>₹{{pdt.unit_price}}</strong></h4>
 
                         </div>
                     </div>

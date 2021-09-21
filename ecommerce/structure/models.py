@@ -137,9 +137,13 @@ class products(models.Model):
 
 
 class orderdetails(models.Model):
+
+    DEFAULT_USER_ID = 1
+
     orderdetailid = models.AutoField(primary_key=True)
     orderdetailnumber = models.IntegerField(blank=True)
-    order = models.ForeignKey(orders , on_delete=models.CASCADE , blank=True)
+    customer = models.ForeignKey(User , on_delete=models.CASCADE , default=DEFAULT_USER_ID)
+    order = models.ForeignKey(orders , on_delete=models.CASCADE , blank=True , null = True)
     product = models.ForeignKey(products , on_delete=models.CASCADE)
     price = models.IntegerField()
     quantity = models.IntegerField(validators=[MinValueValidator(1)])

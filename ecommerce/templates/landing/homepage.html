@@ -166,16 +166,16 @@ Homepage
         <div class="row" style="background: #faf9f9;">
             
             {% for pdt in product %}
-                <a href="{% url 'products:home' pdt.productid %}">
                     <div class="col-lg-4 pdt-box">
+                        <a href="{% url 'products:home' pdt.productid %}">
                         <img class="thumbnail" src={{pdt.picture.url}}>
                         <div class="box-element product">
                             <h6><strong>Product : {{pdt.productname}} - {{pdt.created_at}}</strong></h6>
-                            <hr>
-                </a>                
-                            <a href="{% url 'products:addtocart' pdt.productid %}"> <button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
-                            <a class="btn btn-outline-success" href="{% url 'products:home' pdt.productid %}">View</a>
-                            <h4 style="display: inline-block; float: right"><strong>${{pdt.unit_price}}</strong></h4>
+                            <hr></a>
+
+                    <a href="{% url 'products:addtocart' pdt.productid %}"> <button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
+                    <a class="btn btn-outline-success" href="{% url 'products:home' pdt.productid %}">View</a>
+                    <h4 style="display: inline-block; float: right"><strong>${{pdt.unit_price}}</strong></h4>
 
                         </div>
                     </div>

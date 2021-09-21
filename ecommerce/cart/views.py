@@ -13,7 +13,7 @@ def home(request):
 
     form = searchproductform()
 
-    order_details = orderdetails.objects.all().filter(order__customerid = request.user)
+    order_details = orderdetails.objects.all().filter(customer = request.user , order = None)
 
     totalcost = 0
 
@@ -21,7 +21,7 @@ def home(request):
         totalcost += (items.quantity) * items.product.unit_price
 
     related = products.objects.all()
-    cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
+    cart_count = orderdetails.objects.filter(customer=request.user ,  order = None).count()
 
 
     
@@ -51,7 +51,7 @@ def updatecart(request,pk):
 
         #order_details = orderdetails.objects.all().filter(order__customerid = request.user)
         related = products.objects.all()
-        cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
+        cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
 
         context = {
             'category' : category,
@@ -81,7 +81,7 @@ def removefromcart(request,pk):
 
     print('removing ', pk, ' from cart !')
 
-    item = orderdetails.objects.get(orderdetailid = pk , order__customerid = request.user )
+    item = orderdetails.objects.get(orderdetailid = pk , customer = request.user )
     print('removing ' , item.product.productname)
     item.delete()
 

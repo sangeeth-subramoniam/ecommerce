@@ -15,7 +15,7 @@ def home(request,pk):
     
     #related = products.objects.filter(Q(category__categoryid = product.category.categoryid) , ~Q(productid = product.productid)).order_by('unit_price')[:3]
     related = products.objects.all()
-    cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
+    cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
 
     print('the pdt is ', product)
 
@@ -39,15 +39,15 @@ def addtocart(request,pk):
 
     payment_mode = payment.objects.get(paymentid = 1)
 
-    orderinst,createdorder = orders.objects.get_or_create(customerid = request.user , order_complete = False , defaults={
-        'customerid' : request.user , 'orderdate' : datetime.now() , 'ordernumber' : str(str(request.user) + str(datetime.now())) , 'paymentdate' : datetime.now() , 'paymentid' : payment_mode })
+    #orderinst,createdorder = orders.objects.get_or_create(customerid = request.user , order_complete = False , defaults={
+        #'customerid' : request.user , 'orderdate' : datetime.now() , 'ordernumber' : str(str(request.user) + str(datetime.now())) , 'paymentdate' : datetime.now() , 'paymentid' : payment_mode })
 
     #print(order , created)
 
     prod_item = products.objects.get(productid = pk)
 
-    orderdetail,createdorderdetails = orderdetails.objects.get_or_create(product__productid = pk , order__customerid = request.user , defaults={
-        'orderdetailnumber' :  int(str(request.user.id) + str(datetime.now().strftime('%Y%m%d'))) , 'order' : orderinst , 'product' : prod_item, 'price' : prod_item.unit_price , 'quantity' : 1 , 'discount' : 0 , 'date' : datetime.now() 
+    orderdetail,createdorderdetails = orderdetails.objects.get_or_create(product__productid = pk , customer = request.user , order = None , defaults={
+        'orderdetailnumber' :  int(str(request.user.id) + str(datetime.now().strftime('%Y%m%d'))) ,  'product' : prod_item, 'price' : prod_item.unit_price , 'quantity' : 1 , 'discount' : 0 , 'date' : datetime.now() 
         })
 
     if createdorderdetails == False:

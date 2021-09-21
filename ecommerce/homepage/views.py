@@ -33,7 +33,7 @@ def home(request):
             page_num = request.GET.get('page')
             product_page = product_paginator.get_page(page_num)
 
-            cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
+            cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
             
 
             context = {
@@ -53,7 +53,7 @@ def home(request):
 
             product = products.objects.all()
             category = categories.objects.all()
-            cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
+            cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
 
             context = {
                 'product' : product,
@@ -90,7 +90,7 @@ def home(request):
                 print('the requesttype is ', request.method ,' and the search_term is ' , search_term , 'params are ' , request.POST)
                 form = searchproductform()
                 form.fields["productname"].initial = search_term
-                cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
+                cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
 
                 context = {
                     'product' : product,
@@ -155,7 +155,7 @@ def home(request):
                     else:
                         product = products.objects.all()
             
-            cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
+            cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
 
             category = categories.objects.all()
             context = {
@@ -192,7 +192,7 @@ def category(request,pk):
 
             form = searchproductform()
             form.fields['productname'].initial = cat.categoryname
-            cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
+            cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
 
             context = {
                 'curr_user' : curruser,
@@ -206,7 +206,7 @@ def category(request,pk):
         else:
             product = products.objects.all()
             category = categories.objects.all()
-            cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
+            cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
 
             context = {
                 'product' : product,
@@ -250,7 +250,7 @@ def category(request,pk):
 
         category = categories.objects.all()
 
-        cart_count = orderdetails.objects.filter(order__customerid=request.user).count()
+        cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
 
         context = {
             'product' : product,

@@ -66,7 +66,7 @@ Product-Home
             <br>
             <h4>Total items : {{cart_count}}</h4> <br>
             <h4>Total cost : {{totalcost}}</h4><br><br>
-            <a href="{% url 'orders:createorder' %}"><button class="btn btn-success" style="width: 100%;">Place Order</button></a>
+            <button class="btn btn-success" style="width: 100%;">Place Order</button>
         </div>
         
 
@@ -152,10 +152,8 @@ Product-Home
 
         <div class="container" >
 
-            {% if orderdetails %}
-
             <hr>
-            {% for orderdetailspdt in orderdetails %}
+            {% for orderdetailspdt in myorders %}
 
                 <div class="container" style="overflow: hidden; background: #faf9f9;">
                     <div class="row">
@@ -164,13 +162,6 @@ Product-Home
                             <img class="product-display" src="{{ orderdetailspdt.product.picture.url }}" alt="error" style="width:70%; margin: 0% 0% 0% 10%;">
                         </div>
                         <div class="col-lg-5" style="text-align: left; margin: 5% 0% 0% -5%;">
-                            
-                            <span>
-                                <a href="{% url 'cart:updatecart' orderdetailspdt.orderdetailid %}"><button class="btn btn-warning fa fa-shopping-cart" style="width: 100%;"> EDIT QUANTITY </button></a>
-                                <br> <br>
-                                <a href="{% url 'cart:removefromcart' orderdetailspdt.orderdetailid  %}"><button class="btn btn-danger fas fa-cart-arrow-down" style="width: 100%;" onclick="return confirm('Are you sure?')"> REMOVE FROM CART </button></a>
-                            </span>
-                            <br><br>
                             
                             <b>productname :</b> <h1 style="text-transform: capitalize;">{{orderdetailspdt.product.productname}}</h1>
                             <br>
@@ -192,43 +183,10 @@ Product-Home
                 <hr><br><br><br>
 
                 {% endfor %}
-                {% else %}
-                <br><br>
-                    <h1 style="text-align: center;">No Items in your cart !!</h1>
-                    <b> <p style="text-align: center;"> Continue Shopping and add items in your cart ! </p></b><br>
-                    <hr>
-                    <br><br>
-                {%endif%}
                 <a href="{% url 'homepage:home' %}"><button class="btn btn-primary" style="width: 80%; margin: 0 10%;"> CONTINUE SHOPPING </button><br><br></a>
-                <a href="{% url 'orders:createorder' %}"><button class="btn btn-success" style="width: 80%; margin: 0 10%;"> PLACE ORDER </button><br></a>
                 <br>
                 <br>
             
-            
-                <h1>SIMILAR PRODUCTS :</h1>
-                <hr>
-
-                <div class="row related-scroller">
-            
-                    {% for rpdt in related_items %}
-                        <a href="{% url 'products:home' rpdt.productid %}">
-                            <div class="col-lg-4 pdt-box">
-                                <img class="thumbnail" src={{rpdt.picture.url}}>
-                                <div class="box-element product">
-                                    <h6><strong>Product : {{rpdt.productname}} - {{rpdt.created_at}}</strong></h6>
-                                    <hr>
-        
-                                    <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
-                                    <a class="btn btn-outline-success" href="#">View</a>
-                                    <h4 style="display: inline-block; float: right"><strong>${{rpdt.unit_price}}</strong></h4>
-        
-                                </div>
-                            </div>
-                        </a>
-                        <br> 
-                        <br><br>
-                    {% endfor %}
-                </div>
             <br>
             </div>
             <hr>

@@ -34,8 +34,15 @@
             </ul>
             <div class="form-inline my-2 my-lg-0">
                 {% if user.is_authenticated %}
-                    <a href="#" class="btn btn-warning" style="margin: 4px;">Hello, {{user.username}}</a>
-                    <a href="{% url 'registration:signout' %}" class="btn btn-warning">Signout</a>
+                    <div class="dropdown">
+                        <a href="#" class="btn btn-warning" style="margin: 4px;"><button class = "button btn-warning dropbtn" style="border: none;"> Hello, {{user.username}}</button><i class="fa fa-caret-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="{% url 'orders:myorders' %}">My Orders</a>
+                            <a href="#">Profile</a>
+                            <a href="#">Help</a>
+                        </div>
+                    </div>
+                    <a href="{% url 'registration:signout' %}" class="btn btn-warning"> <button class = "button btn-warning" style="border: none;" onclick="return confirm('are you sure ?') "> Signout </button></a>
                 {% else %}
                     <a href="{% url 'registration:signin' %}" style="margin: 4px;" class="btn btn-warning">Signin</a>
                     <a href="{% url 'registration:signup' %}" class="btn btn-warning">Signup</a>

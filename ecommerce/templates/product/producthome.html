@@ -142,7 +142,7 @@ Product-Home
         -->
 
 
-        <div class="container" >
+        <div class="container">
 
             <hr>
                 <div class="container" style="overflow: hidden; background: #faf9f9;">
@@ -168,8 +168,12 @@ Product-Home
                             <b>product desc :</b> <h1>{{product.productdescription}}</h1>
                             <br><br>
                             <span style="padding: 20px; width: 100%;">
-                                <button class="fa fa-thumbs-up btn btn-success" style="margin : 5px;"> LIKE </button>
-                                <button class="fas fa-share btn btn-warning" style="margin : 5px;"> Share </button>
+                                {% if liked %}
+                                    <a href="{% url 'likes:like' product.productid %}"><button class="fa fa-thumbs-up btn btn-success" style="margin : 5px;"> UNLIKE </button></a>
+                                {% else %}
+                                    <a href="{% url 'likes:like' product.productid %}"><button class="fa fa-thumbs-up btn btn-success" style="margin : 5px;"> LIKE </button></a>
+                                {% endif %}                                
+                                <button class="fas fa-share-alt btn btn-warning" style="margin : 5px;"> Share </button>
                                 <button class="fas fa-flag btn btn-danger" style="margin : 5px;"> REPORT </button>
                             </span>
                             <br><br>
@@ -194,6 +198,101 @@ Product-Home
                 
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, obcaecati sunt. Praesentium molestias repudiandae temporibus facere nemo nesciunt laudantium iure consectetur accusantium culpa voluptatem aperiam est quas expedita, doloremque, at minus magnam ratione alias exercitationem facilis distinctio velit. Voluptatem reiciendis, neque aliquid quae iure saepe. Sapiente officia ad tempore omnis aut laudantium deserunt ratione pariatur delectus exercitationem fugit adipisci ea voluptas modi quod consectetur minima, obcaecati facilis! Repellendus nam facilis reiciendis hic, ut recusandae. Quo cumque officia modi a cupiditate amet alias quaerat laborum magnam delectus ratione inventore cum soluta omnis ut error perspiciatis beatae nihil porro autem, nam deleniti? </p>
                 <br>
+
+            <hr>
+
+            <br><br>
+
+                <h1>Reviews : </h1><br>
+
+                <form action = " {% url 'reviews:review' product.productid %}" enctype="multipart/form-data" method="POST">
+                    <div class="reviewform">
+                        {% csrf_token %}
+                        <fieldset class="rating">
+                            <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </fieldset>
+                        <br><br><br>
+                        {{ reviewForm|as_bootstrap  }}            
+                    </div>
+                    
+                    <input type="submit" class = 'btn btn-outline-secondary' name="submit" value="Submit">
+                </form>
+                <br><br>
+
+                {% if pdtreviews %}
+                    <div class="container" >
+                        <div class="user-review">
+                            {% if pdtreviews.reviewed_by == request.user %}
+                            <div class="row" style="border: 3px solid black;background-color: #607b9d;">
+                            {% else %}
+                            <div class="row" style="border: 3px solid black;">
+                            {% endif %}
+                                <div class="col-lg-4">
+                                    <span><i class="fas fa-user fa-2x fa-pull-left fa-circle" style="margin : 15px; margin-left: 0px ; padding : 10px ;border: 5px solid black; border-radius: 20px;"></i> <h3 style="margin : 15px; margin-left: 0px ; padding : 10px ;"> {{pdtreviews.reviewed_by}} </h3> </span>
+                                </div>
+                                <div class="col-lg-8">
+                                    <span style="margin : 30px; margin-left: 0px ; padding : 10px ; text-align: right;"><h3>{{pdtreviews.stars}} <i class="fa fa-star fa-pull-right " aria-hidden="false"></i></h3></span>
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h3><u>{{pdtreviews.review_title}}</u></h3>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h3 style="text-align: right;">( <i class="far fa-calendar-alt"></i> <u>{{pdtreviews.reviewed_time}}</u> ) </h3>
+                                </div>
+                                
+                            </div>
+                            <br><br>
+                            <div class="row">
+                                <h5>{{pdtreviews.review_content}}</h5>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    
+                                </div>
+                                <div class="col-lg-2">
+                                    {% if pdtreviews.reviewed_by == request.user %}
+                                    <button style="width: 100%;" class="btn btn-outline-danger"> Delete </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <br><br>
+                            <div class="row" >
+                                <div class="col-lg-12">
+                                    <a href="{% url 'reviews:review' product.productid %}" style="text-decoration: none;"><h5 style="text-align: center; ">Click Here to see more reviews !</h5></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+
+                    <div class="container">
+                        <div class="row" style="border: 3px solid black; padding: 10px;">
+                            <div class="col-lg-12">
+                                <h3 style="text-align: center;"> This products has no reviews yet ! </h3>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <br>
+                <hr>
+
+                <br><br><br>
+
                 <h1>SIMILAR PRODUCTS :</h1>
                 <hr>
 
@@ -223,8 +322,11 @@ Product-Home
             <hr>
 
             <br><br>
+
+            
             
 
 
 {% endblock %}
 </div>
+

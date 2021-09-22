@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% load static %}
+{% load bootstrap_tags %}
 
 {% block title %}
 
@@ -10,81 +11,87 @@ Homepage
 
 {% block leftnav %}
 
-<hr>
-<h1> Categories : </h1>
+    <div class="right-nav">
+        <hr>
+        <h1> Categories : </h1><br>
 
-    <div class="container">
-        {% for cat in category %}
+            <div class="container">
+                {% for cat in category %}
 
-            <h4><a href="#" style="align-items: center;"><li>{{cat.categoryname}}</li></a></h4>
-        {% endfor %}
+                    <h4><a href="#" style="align-items: center;" onclick = "return confirm('Please signin to continue !') "><li>{{cat.categoryname}}</li></a></h4>
+
+                {% endfor %}
+            </div>
+
+
+        <hr>
+        <br><br>
+
+        <ul>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            
+        </ul>
     </div>
 
-
-<hr>
-<br><br>
-
-<ul>
-    <a href="#"><li>click here</li></a>
-    <a href="#"><li>click here</li></a>
-    <a href="#"><li>click here</li></a>
-    <a href="#"><li>click here</li></a>
-    <a href="#"><li>click here</li></a>
-    <a href="#"><li>click here</li></a>
-    <li>click here</li>
-    <li>click here</li>
-    <li>click here</li>
-    <li>click here</li>
-    <li>click here</li>
-    <li>click here</li>
-    <li>click here</li>
-    <a href="#"><li>click here</li></a>
-    <a href="#"><li>click here</li></a>
-    <a href="#"><li>click here</li></a>
-    <a href="#"><li>click here</li></a>
-    <a href="#"><li>click here</li></a>
-    <a href="#"><li>click here</li></a>
-    <a href="#"><li>click here</li></a>
-    
-</ul>
 
 {% endblock %}
 
 
 {% block rightnav %}
 
+    <div class="right-nav">
+        <hr>
+        <h1> This comes from template betsu </h1>
 
-<h1> This comes from template betsu </h1>
+        <br><br><br><br>
 
-<br><br><br><br>
+        <h1>test title</h1>
 
-<h1>test title</h1>
+        <br><br><br>
 
-<br><br><br>
-
-<ul>
-    <a href=""><li>click here</li></a>
-    <a href=""><li>click here</li></a>
-    <a href=""><li>click here</li></a>
-    <a href=""><li>click here</li></a>
-    <a href=""><li>click here</li></a>
-    <a href=""><li>click here</li></a>
-    <li>click here</li>
-    <li>click here</li>
-    <li>click here</li>
-    <li>click here</li>
-    <li>click here</li>
-    <li>click here</li>
-    <li>click here</li>
-    <a href=""><li>click here</li></a>
-    <a href=""><li>click here</li></a>
-    <a href=""><li>click here</li></a>
-    <a href=""><li>click here</li></a>
-    <a href=""><li>click here</li></a>
-    <a href=""><li>click here</li></a>
-    <a href=""><li>click here</li></a>
-    
-</ul>
+        <ul>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            
+        </ul>
+    </div>
 
 {% endblock %}
 
@@ -93,59 +100,54 @@ Homepage
 {% block body %}
 
         <br>
-        <h1 style="align-items: center;"> Welcome , Please signin to continue!!</h1> 
+        <h1 id="top-section" style="align-items: center;  color: #485e79;"> Welcome , Please Sign in to continue!!</h1> 
         <br>
-        <form action="#">
+        <form action="#" method="post">
             {% csrf_token %}
-            <div class="container sub-nav-container" style="background: #d3d3d3; height:2.6%; border-radius: 15px 15px 15px 15px; text-align: center; " >
+            <div class="container sub-nav-container" style="background: #d3d3d3; height:3%; border-radius: 15px 15px 15px 15px; text-align: center;" >
                 <div class="row center">
                         <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
-                            <input class="form-control maniplulate-button" type="button" value="sort_Asc" name="manipulation_type" onclick="myfunction()">
+                            <input style="background-color: #485e79;" class="form-control maniplulate-button " type="submit" value="sort_asc" name="manipulation_type" disabled>
                         </div>
                     
                     <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
-                        <input class="form-control maniplulate-button" type="button" value="sort_desc" name="manipulation_type" onclick="myfunction()">
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="sort_desc" name="manipulation_type" disabled>
                     </div>
 
                     <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
-                        <input class="form-control maniplulate-button" type="button" value="recent" name="manipulation_type" onclick="myfunction()">
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="recent" name="manipulation_type" disabled>
                     </div>
 
-                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%%;">
-                        <input class="form-control maniplulate-button" type="button" value="most popular" name="manipulation_type" onclick="myfunction()">
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="most popular" name="manipulation_type" disabled>
                     </div>
                 </div>
             </div>
         </form>
 
-        <br><br><br>
+
+        <br>
         <hr>
 
-        <div class="row">
+        <div class="row" style="background: #faf9f9;">
             
             {% for pdt in product %}
-                <div class="col-lg-4 pdt-box">
-                    <img class="thumbnail" src={{pdt.picture.url}}>
-                    <div class="box-element product">
-                        <h6><strong>Product : {{pdt.productname}}</strong></h6>
-                        <hr>
+                    <div class="col-lg-4 pdt-box">
+                        <a href="#" onclick="return confirm('Please Signin to continue !')">
+                        <img class="thumbnail" src={{pdt.picture.url}}>
+                        <div class="box-element product">
+                            <h6><strong>Product : {{pdt.productname}} - {{pdt.created_at}}</strong></h6>
+                            <hr></a>
 
-                        <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
-                        <a class="btn btn-outline-success" href="#">View</a>
-                        <h4 style="display: inline-block; float: right"><strong>₹{{pdt.unit_price}}</strong></h4>
+                    <a href="#" onclick="return confirm('Please Signin to continue !')"> <button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
+                    <a class="btn btn-outline-success" href="#" onclick="return confirm('Please Signin to continue !')">View</a>
+                    <h4 style="display: inline-block; float: right"><strong>₹{{pdt.unit_price}}</strong></h4>
 
+                        </div>
                     </div>
-                </div>
                 <br> 
                 <br><br><br><br>
             {% endfor %}
         </div>
-
-        <script>
-            function myfunction(){
-                alert('Please signin to continue !');
-            }
-        </script>
-
 {% endblock %}
 </div>

@@ -1,8 +1,9 @@
 from django.shortcuts import redirect, render
-from structure.models import categories, orders, products , orderdetails, payment , like
+from structure.models import categories, orders, products , orderdetails, payment , like , reviews
 from homepage.forms import searchproductform
 from django.db.models import Q
 from datetime import datetime
+from reviews.forms import reviewForm
 
 
 # Create your views here.
@@ -12,6 +13,19 @@ def home(request,pk):
     form = searchproductform
     category = categories.objects.all()
 
+    reviewform = reviewForm()
+
+    try:
+        liked = like.objects.get(liked_product__productid = pk ,liked_by = request.user)
+    except:
+        liked = None
+
+    if liked:
+        liked = True
+    else:
+        liked = False
+    
+
     
     #related = products.objects.filter(Q(category__categoryid = product.category.categoryid) , ~Q(productid = product.productid)).order_by('unit_price')[:3]
     related = products.objects.all()
@@ -19,6 +33,7 @@ def home(request,pk):
 
     like_count = like.objects.filter(liked_product__productid = pk ).count()
 
+    pdtreviews = reviews.objects.filter(reviewed_product__productid = pk).order_by('-reviewed_time').first()
 
 
     print('the pdt is ', product)
@@ -29,7 +44,10 @@ def home(request,pk):
         'category' : category,
         'related_items' : related,
         'cart_count' : cart_count, 
-        'like_count' : like_count
+        'like_count' : like_count,
+        'liked' : liked,
+        'reviewForm' : reviewform,
+        'pdtreviews' : pdtreviews
     }
 
 

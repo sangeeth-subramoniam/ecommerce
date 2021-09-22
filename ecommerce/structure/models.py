@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.aggregates import Count
 from PIL import Image
 
-from django.core.validators import  MinValueValidator
+from django.core.validators import  MinValueValidator,MaxValueValidator
 #from payment.models import payment
 
 # Create your models here.
@@ -163,5 +163,19 @@ class like(models.Model):
 
     def __str__(self):
         return str(str(self.liked_by) + str(self.liked_product))
+
+class reviews(models.Model):
+    
+    reviewid = models.AutoField(primary_key=True)
+    reviewed_by = models.ForeignKey(User , on_delete=models.CASCADE , blank=True , null=True)
+    reviewed_product = models.ForeignKey(products , on_delete=models.CASCADE , blank=True , null=True)
+    review_title = models.CharField(max_length=30 , blank = True , null=True)
+    review_content = models.TextField(max_length=1000 , blank=True, null=True)
+    stars = models.DecimalField(default=5 , max_digits=2 , decimal_places=1)
+    reviewed_time = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(str(self.reviewed_by) + str(self.reviewed_product))
+
 
 

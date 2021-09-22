@@ -160,15 +160,15 @@ Product-Home
                     <div class="jumbotron">
                         <div class="row">
                             <div class="col-lg-4">
-                                <b>Order id :</b> {{order.orderid}} <br>
-                                <b>Placed by :</b> {{order.customerid}} <br>
-                                <b>Date :</b> {{order.orderdate}} <br>
-                                <b>Status :</b> {{order.order_complete}} <br>
-                                <b>Total Amount :</b> ₹{{order.totalcost}} <br>
+                                <h5><b>Order id :</b> {{order.orderid}}</h5> <br>
+                                <h5><b>Placed by :</b> {{order.customerid}}</h5> <br>
+                                <h5><b>Date :</b> {{order.orderdate}}</h5> <br>
+                                <h5><b>Status :</b> {{order.order_complete}}</h5> <br>
+                                <h5><b>Total Amount :</b> ₹{{order.totalcost}}</h5> <br>
                                 {% if order.deliverystatus %}
-                                    <b>Delivery Status :</b> Delivered Successfully !! <br>
+                                    <h5><b>Delivery Status :</b> Delivered Successfully !!</h5> <br>
                                 {% else %}
-                                    <b>Delivery Status :</b> On progress !! <br>
+                                    <h5><b>Delivery Status :</b> On progress !!</h5> <br>
                                 {% endif %}
                                 <br>
                             </div>

@@ -53,12 +53,10 @@ def home(request):
 
             product = products.objects.all()
             category = categories.objects.all()
-            cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
 
             context = {
                 'product' : product,
                 'category': category,
-                'cart_count' : cart_count
             }
             return render(request,'landing/not_signed_in.html', context)
     

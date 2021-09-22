@@ -33,6 +33,9 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
+                    {% if request.user.id == 1 %}
+                        <a class="nav-link" href="{% url 'products:addproduct' %}" > <button class="btn btn-primary" style="background-color: white; color: black;"> ADD PRODUCT </button>  <span class="sr-only">(current)</span></a>
+                    {% endif %}
                 </li>
 
             </ul>

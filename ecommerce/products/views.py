@@ -4,6 +4,7 @@ from homepage.forms import searchproductform
 from django.db.models import Q
 from datetime import datetime
 from reviews.forms import reviewForm
+from .forms import productsForm
 
 
 # Create your views here.
@@ -82,3 +83,43 @@ def addtocart(request,pk):
 
 
     return redirect('cart:home')
+
+
+def addproduct(request):
+    if request.method == "GET":
+
+        request.session['searchtype'] = 'home'
+        request.session.modified = True
+
+        if request.user.is_authenticated:
+            curruser = request.user
+            category = categories.objects.all()
+
+
+            cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
+            productsform = productsForm()
+
+            context = {
+
+                'curr_user' : curruser,
+                'category' : category,
+                #'product' : product,
+                'cart_count' : cart_count ,
+                'productsform' : productsform                
+            }
+            return render(request,'product/addproducts.html',context)
+    
+    elif request.method == "POST":
+
+        print(request.POST)
+        productinstance = productsForm(request.POST)
+
+        if productinstance.is_valid():
+            productinstance2 = productinstance.save(commit = False)
+
+            if 'picture' in request.FILES:
+                productinstance2.picture = request.FILES['picture']
+
+            productinstance2.save()
+
+        return redirect('products:addproduct')

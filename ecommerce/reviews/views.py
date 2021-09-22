@@ -16,20 +16,26 @@ def review(request,pk):
             instance.stars = request.POST['rating']
             instance.save()
 
+        print('created instance jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
         return redirect('products:home', pk)
 
     if request.method == "GET":
 
         print('Fetching all reviews !')
 
+        product = products.objects.get(productid = pk)
+
         review = reviews.objects.filter(reviewed_product__productid = pk).order_by('-reviewed_time')
         category = categories.objects.all()
         form = searchproductform()
+        reviewform = reviewForm()
 
         context = {
+            'product' : product ,
             'review' : review,
             'category' : category,
-            'form' : form
+            'form' : form,
+            'reviewform' : reviewform,
         }
 
         return render(request, 'reviews/reviewpage.html' , context)

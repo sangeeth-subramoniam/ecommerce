@@ -185,3 +185,32 @@ fieldset, label { margin: 0; padding: 0; }
 .fa-star:hover{
 	text-shadow: 0 0 20px gold;
 }
+
+
+
+.sliderimg{
+	width:100%; /* or whatever width you want. */
+	max-width:100%;
+	height: 720px;
+	max-height: 720px;
+	display: inline-block;
+}
+
+.pp-jumbo{
+	border-radius: 20px;
+}
+
+.profile-picture{
+	height: 400px;
+	max-height: 400px;
+	width : 400px;
+	max-width: 400px;
+	border-radius: 20px;
+	margin-left: 35.5%;
+	border: 3px solid black;
+}
+
+.profilebutton{
+	width: 30%;
+	margin: 1% 35% ;
+}

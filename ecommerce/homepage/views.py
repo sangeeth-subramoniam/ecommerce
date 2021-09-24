@@ -23,6 +23,8 @@ def home(request):
             category = categories.objects.all()
             product = products.objects.all()
 
+            slideimgs = products.objects.filter(discount = 1).order_by('unit_price')
+
             
 
             form = searchproductform()
@@ -45,7 +47,8 @@ def home(request):
                 'category' : category,
                 #'product' : product,
                 'cart_count' : cart_count ,
-                'form' : form
+                'form' : form,
+                'slideimgs' : slideimgs
             }
             return render(request,'landing/homepage.html',context)
 
@@ -119,6 +122,7 @@ def home(request):
 
                     elif manipulate_type == 'most popular':
                         product = products.objects.all().order_by('-likes')
+                        print(product)
 
                     else:
                         product = products.objects.all()
@@ -148,9 +152,11 @@ def home(request):
                         product = products.objects.all().filter(Q(productname__icontains = search_product) | Q(category__categoryname__icontains = search_product)).order_by('-created_at')
 
                     elif manipulate_type == 'most popular':
+                        print('enter')
                         product = products.objects.all().filter(Q(productname__icontains = search_product) | Q(category__categoryname__icontains = search_product)).order_by('-likes')
-
+                        print('over')
                     else:
+                        print('enter2')
                         product = products.objects.all()
             
             cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
@@ -168,8 +174,13 @@ def home(request):
         
 
 
-def contact(request):
-    return render(request,'landing/contact.html')
+def profile(request):
+    userdetails = user_profile.objects.get(user = request.user)
+    context = {
+        'pp' : userdetails,
+        'curr_user' : request.user
+    }
+    return render(request,'landing/profile.html' , context)
 
 def about(request):
     return render(request,'landing/about.html')
@@ -241,6 +252,7 @@ def category(request,pk):
                 product = products.objects.all().filter(category__categoryid = cat.categoryid).order_by('-created_at')
 
             elif manipulate_type == 'most popular':
+                print('ttt')
                 product = products.objects.all().filter(category__categoryid = cat.categoryid).order_by('-likes')
 
         else:
@@ -258,71 +270,6 @@ def category(request,pk):
         }
         return render(request,'landing/category.html',context)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
-def options(request , pk):
-    print('the option selected is ' , pk)
-
-    if 'search_term' in request.session:
-        search_term = request.session['search_term']
-
-    if request.method == "POST":
-        print('this is a post request !! ')
-        request.session['search_term'] = request.POST.get('productname')
-        return redirect('homepage:home')
-        
-
-    if pk == 'sort_asc':
-        if 'search_term' in request.session:
-            product = products.objects.all().filter(Q(productname__icontains = search_term) | Q(category__categoryname__icontains = search_term)).order_by('unit_price')
-        else:
-            product = products.objects.all().order_by('unit_price')
     
-    elif pk == 'sort_desc':
-        if 'search_term' in request.session:
-            product = products.objects.all().filter(Q(productname__icontains = search_term) | Q(category__categoryname__icontains = search_term)).order_by('-unit_price')
-        else:
-            product = products.objects.all().order_by('-unit_price')
-    
-    elif pk == 'recent':
-        if 'search_term' in request.session:
-            product = products.objects.all().filter(Q(productname__icontains = search_term) | Q(category__categoryname__icontains = search_term)).order_by('-created_at')
-        else:
-            product = products.objects.all().order_by('-created_at')
-
-    elif pk == 'sort_popular':
-        if 'search_term' in request.session:
-            product = products.objects.all().filter(Q(productname__icontains = search_term) | Q(category__categoryname__icontains = search_term)).order_by('-likes')
-        else:
-            product = products.objects.all().order_by('-likes')
-
-    else:
-        product = products.objects.all()
-    
-    category = categories.objects.all()
-    form = searchproductform()
-
-    context = {
-            'product' : product,
-            'category': category,
-            'form' : form
-        }
-    return render(request,'landing/homepage.html',context)
-'''
+def updateprofile(request , pk):
+    return redirect('homepage:home')

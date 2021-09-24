@@ -45,7 +45,7 @@
                         <a href="#" class="btn btn-warning" style="margin: 4px;"><button class = "button btn-warning dropbtn" style="border: none;"> Hello, {{user.username}}</button><i class="fa fa-caret-down"></i></a>
                         <div class="dropdown-content">
                             <a href="{% url 'orders:myorders' %}">My Orders</a>
-                            <a href="#">Profile</a>
+                            <a href="{% url 'homepage:profile' %}">Profile</a>
                             <a href="#">Help</a>
                         </div>
                     </div>

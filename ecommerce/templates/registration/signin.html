@@ -2,6 +2,13 @@
 {% block title %} Login Page {% endblock %}
 
 {% block body%}
+
+    {% if successmessage %}
+        <br>
+            <h4 style="color: rgb(2, 218, 2); margin-left: 2em;">{{successmessage}}</h4>
+        <br>
+    {% endif %}
+
     <br><br>
     <div class="container">
         <h1 style="text-align: center;">Fill in your credentials</h1>
@@ -25,7 +32,8 @@
                     <br>
                     <br>
 
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="sign in"> 
+                    <a href="{% url 'registration:change_password1' %}"><input type="button" value="Forgot Password"></a>
                 
                 </form>
             </div>

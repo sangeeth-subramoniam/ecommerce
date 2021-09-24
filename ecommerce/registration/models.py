@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.enums import Choices
+import datetime
 # Create your models here.
 
 class user_profile(models.Model):
@@ -42,6 +43,8 @@ class user_profile(models.Model):
     #additional fields
     firstName = models.CharField(max_length=30)
     lastName = models.CharField(max_length=30)
+    date_of_birth = models.DateField(default=datetime.date.today)
+
     address1 = models.CharField(max_length=100)
     city = models.CharField(max_length=5 , choices=CITIES, blank = True)
     state = models.CharField(max_length=5 , choices=STATES, blank = True)

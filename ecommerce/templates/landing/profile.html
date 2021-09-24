@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+Profile
+
+{% endblock %}
+{% comment %} testing {% endcomment %}
+{% block body %}
+<br>
+<h1 style="text-align: center; text-transform: capitalize; ">{{pp.user.username}}</h1>
+<br>
+{% if pp.profile_picture %}
+<div class="jumbotron pp-jumbo">
+    {% if curr_user.username == "sangeeth"  %}
+        <img class="profile-picture" src=" {% static 'img/sangeeth.jpg' %}  " alt="Broken link">
+    {% else %}
+        <img class="profile-picture" src="{{pp.profile_picture.url}}" alt="Broken link">
+    {% endif %}
+</div>
+{% else %}
+    <div class="jumbotron">
+    <h5 style="text-align: center;">
+        <b> No profile picture uploaded ! </b>
+    </h5>
+</div>
+{% endif %}
+<div>
+    <a href=" {% url 'registration:user_profile_picture_update' %} "><button class = "btn btn-outline-warning profilebutton"> <h5> Edit </h5></button></a>
+</div>
+<br><br>
+<div class="container">
+    <h3>PERSONAL : </h3>
+    <div class="jumbotron">
+        <h5>
+        <ul>
+            <li>id is {{pp.user.id}}</li><br>
+            <li>Name : {{pp.firstName}} {{pp.lastName}} </li><br>
+            <li>DOB : {{pp.date_of_birth}} </li><br>
+            <li>BIO : {{pp.bio}}</li><br>
+            <li>Address : {{pp.address1}}, {{pp.city}}, {{pp.state}}</li><br>
+            <li>Date of Joining : {{pp.user.date_joined}}</li><br>
+        </ul>
+        </h5>
+    </div>
+    <!-- line 2 -->
+    <a href="{% url 'registration:user_profile_update' %}">
+        <button class="btn btn-warning"> Edit </button>
+    </a>
+</div>
+
+<br><br>
+
+<div class="container">
+    <h3>CHANGE PASSWORD : </h3>
+    <div class="jumbotron">
+        <a href="{% url 'registration:change_password1' %}"><button class="btn btn-warning"> Change Password </button></a>
+    </div>
+</div>
+
+<br><br>
+
+{% endblock %}

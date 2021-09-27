@@ -121,8 +121,9 @@ def home(request):
                         product = products.objects.all().order_by('-created_at')
 
                     elif manipulate_type == 'most popular':
+                        print('ee chck')
                         product = products.objects.all().order_by('-likes')
-                        print(product)
+                        print('ee',product)
 
                     else:
                         product = products.objects.all()

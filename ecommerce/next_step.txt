@@ -1,1 +1,5 @@
-set a message like js pop up whenever an order is placed
+set a message like js pop up whenever an order is placed  - DONE
+
+right nav show recently visited - DONE 
+
+sort popular still not perfect --- looks fine now... but still keep an eye

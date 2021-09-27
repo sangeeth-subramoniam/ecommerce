@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.aggregates import Count
 from PIL import Image
-
+from likes.models import like
 from django.core.validators import  MinValueValidator,MaxValueValidator
 #from payment.models import payment
 
@@ -153,16 +153,6 @@ class orderdetails(models.Model):
     def __str__(self):
         return str( str(self.orderdetailid) + ' ' + str(self.product) + ' ' + str(self.quantity))
 
-
-class like(models.Model):
-    
-    likeid = models.AutoField(primary_key=True)
-    liked_by = models.ForeignKey(User , on_delete=models.CASCADE , blank=True , null=True)
-    liked_product = models.ForeignKey(products , on_delete=models.CASCADE , blank=True , null=True)
-    liked_time = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return str(str(self.liked_by) + str(self.liked_product))
 
 class reviews(models.Model):
     

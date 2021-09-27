@@ -156,7 +156,7 @@ Product-Home
                             <span>
                                 <a href="{% url 'products:addtocart' product.productid %}"><button class="btn btn-primary" style="width: 100%;"> ADD TO CART </button></a>
                                 <br> <br>
-                                <button class="btn btn-success" style="width: 100%;"> BUY NOW </button>
+                                <button id="confirmpurchase" class="btn btn-success" style="width: 100%;"> BUY NOW </button>
                             </span>
                             <br><br>
                             
@@ -304,10 +304,10 @@ Product-Home
                                 <img class="thumbnail" src={{rpdt.picture.url}}>
                                 <div class="box-element product">
                                     <h6><strong>Product : {{rpdt.productname}} - {{rpdt.created_at}}</strong></h6>
-                                    <hr>
+                                    <hr></a>
         
-                                    <a href="#"></a> <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
-                                    <a class="btn btn-outline-success" href="#">View</a>
+                                    <a href="{% url 'products:addtocart' rpdt.productid %}"><button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
+                                    <a class="btn btn-outline-success" href="{% url 'products:home' rpdt.productid %}">View</a>
                                     <h4 style="display: inline-block; float: right"><strong>₹{{rpdt.unit_price}}</strong></h4>
         
                                 </div>
@@ -323,7 +323,32 @@ Product-Home
 
             <br><br>
 
-            
+<script>
+
+
+
+    document.getElementById("confirmpurchase").onclick = function fun() {
+        
+
+        Swal.fire({
+        title: 'Are you sure you want to place order ?',
+        icon: 'question',
+        iconHtml: '?',
+        confirmButtonText: 'Place Order',
+        cancelButtonText: 'No',
+        showCancelButton: true,
+        showCloseButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="/orders/instantorder"
+            } else {
+                //do nothing
+            }
+            })
+    }
+
+    
+</script>
             
 
 

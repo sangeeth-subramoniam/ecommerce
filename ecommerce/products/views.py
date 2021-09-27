@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
-from structure.models import categories, orders, products , orderdetails, payment , like , reviews
+from structure.models import categories, orders, products , orderdetails, payment , reviews
+from likes.models import like
 from homepage.forms import searchproductform
 from django.db.models import Q
 from datetime import datetime
@@ -10,7 +11,16 @@ from .forms import productsForm
 # Create your views here.
 def home(request,pk):
 
+    
+
     product = products.objects.get(productid = pk)
+
+    request.session['current_pdt_id'] = pk
+    request.session['current_pdt_name'] = product.productname
+    request.session['current_pdt_price'] = product.unit_price
+    request.session['current_pdt_pic'] = product.picture.url
+    request.session.modified = True
+
     form = searchproductform
     category = categories.objects.all()
 

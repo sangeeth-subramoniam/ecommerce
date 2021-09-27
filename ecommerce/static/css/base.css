@@ -55,6 +55,14 @@ html, body {
 	transform: scale(1.1);
 }
 
+.pdt-box-rightnav {
+	margin: 30px 0px;
+}
+
+.pdt-box-rightnav:hover {
+	transform: scale(1.1);
+}
+
 
 .container{
 	max-width: 100%;
@@ -213,4 +221,15 @@ fieldset, label { margin: 0; padding: 0; }
 .profilebutton{
 	width: 30%;
 	margin: 1% 35% ;
+}
+
+
+.bottom-font{
+	color: white;
+	text-decoration: none;
+}
+
+.bottom-font:hover{
+	text-decoration: underline;
+	text-decoration-color:#ffbb33;
 }

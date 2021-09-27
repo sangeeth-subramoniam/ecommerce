@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from structure.models import like , products
+from structure.models import  products
+from .models import  like
 from datetime import date, datetime
 
 # Create your views here.
@@ -14,7 +15,17 @@ def like_product(request,pk):
 
     if created == False:
         liked.delete()
+        pdt = products.objects.get(productid = pk)
+        if pdt.likes >= 1:
+            pdt.likes -= 1
         print('unliked !!')
+    
+    if created == True:
+        print('entering')
+        pdt = products.objects.get(productid = pk)
+        pdt.likes += 1
+        pdt.save()
+        print(pdt)
 
     return redirect('products:home',pk)
 

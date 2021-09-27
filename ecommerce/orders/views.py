@@ -49,14 +49,22 @@ def orderdetail(request, pk):
 
     form = searchproductform()
 
-    cart_count = orderdetails.objects.filter(customer = request.user).count()
+    cart_count = orderdetails.objects.filter(customer = request.user , order = None).count()
 
     myorders = orderdetails.objects.all().filter(order__orderid = pk)
+
+    order_details = orderdetails.objects.all().filter(customer = request.user , order = None)
+
+    totalcost = 0
+
+    for items in order_details:
+        totalcost += (items.quantity) * items.product.unit_price
 
     context = {
         'form' : form ,
         'cart_count' : cart_count,
-        'myorders' : myorders
+        'myorders' : myorders,
+        'totalcost' : totalcost
     }
 
     return render(request, 'orders/myorderdetails.html' , context)

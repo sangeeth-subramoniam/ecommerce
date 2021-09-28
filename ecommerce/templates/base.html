@@ -24,20 +24,21 @@
     <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> -->
         <nav class="navbar navbar-expand-lg" style="background-color: #485e79;">
         <a class="navbar-brand" href="{% url 'homepage:home' %}"> <h1 style="font-family: comicsans; color: white;" >SHOPオンライン</h1></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        <button class="navbar-toggler btn-secondary" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span><i class="fa fa-bars"> MENU </i>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item active" style="display: inline;">
                     <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
                     {% if request.user.id == 1 %}
-                        <a class="nav-link" href="{% url 'products:addproduct' %}" > <button class="btn btn-primary" style="background-color: white; color: black; border: 0.1px solid #ffbb33"> ADD PRODUCT </button>  <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" style="display: block;" href="{% url 'products:addproduct' %}" > <button class="btn btn-primary" style="background-color: white; color: black; border: 0.1px solid #ffbb33"> ADD PRODUCT </button></a>
+                        <a class="nav-link" style="display: block;" href="{% url 'products:adddiscount' %}" > <button class="btn btn-primary" style="background-color: white; color: black; border: 0.1px solid #ffbb33"> ADD DISCOUNT </button></a>
                     {% endif %}
                 </li>
-
+                
             </ul>
             <div class="form-inline my-2 my-lg-0">
                 {% if user.is_authenticated %}
@@ -71,7 +72,7 @@
     <!-- NAV OVER MAIN BODY HERE  -->
 
     <div class="row">
-        <div class="col-md-2" style="border: 2px solid black; min-height: 1550px;">
+        <div class="col-md-2" style="border: 2px solid black; min-height: 1350px;">
             {% block leftnav %}
 
 

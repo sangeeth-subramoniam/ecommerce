@@ -233,3 +233,20 @@ fieldset, label { margin: 0; padding: 0; }
 	text-decoration: underline;
 	text-decoration-color:#ffbb33;
 }
+
+
+@media only screen and (max-width: 1000px) , screen and (max-height: 500px) {
+	
+	.sale-button {
+		display:none;
+	}
+
+	.paginatorleftarrow{
+		margin-right: 50%;
+		margin-bottom: 10px;
+	}
+	
+	.paginatorrightarrow{
+		margin-left: 50%;
+	}
+}

@@ -4,6 +4,8 @@ set a message like js pop up whenever an order is placed  - DONE
 
 right nav show recently visited - DONE 
 
+adding discount to products from homepage for admin - DONE
+
 
 
         progress
@@ -13,9 +15,6 @@ sort popular still not perfect --- looks fine now... but still keep an eye
 
 
         PENDING
-
-
-adding discount to products from homepage for admin
 
 upload to heroku
 

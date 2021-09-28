@@ -133,3 +133,70 @@ def addproduct(request):
             productinstance2.save()
 
         return redirect('products:addproduct')
+
+
+
+def adddiscount(request):
+    if request.method == "GET":
+
+        request.session['searchtype'] = 'home'
+        request.session.modified = True
+
+        if request.user.is_authenticated:
+            curruser = request.user
+            category = categories.objects.all()
+            form = searchproductform()
+
+            product = products.objects.all()
+
+
+            cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
+
+            context = {
+
+                'curr_user' : curruser,
+                'category' : category,
+                'product' : product,
+                'cart_count' : cart_count ,  
+                'form' : form           
+            }
+            return render(request,'product/discount.html',context)
+
+    elif(request.method == "POST"):
+        print(request.POST)
+        pdtname = request.POST.get('productname')
+        if pdtname == '':
+            return redirect('products:adddiscount')
+        else:
+            curruser = request.user
+            category = categories.objects.all()
+            form = searchproductform()
+
+            product = products.objects.all().filter(Q(productname__icontains = pdtname) | Q(category__categoryname__icontains = pdtname) )
+
+
+            cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
+
+            context = {
+
+                'curr_user' : curruser,
+                'category' : category,
+                'product' : product,
+                'cart_count' : cart_count ,  
+                'form' : form           
+            }
+            return render(request,'product/discount.html',context)
+
+
+def setdiscount(request,pk):
+    pdt = products.objects.get(productid = pk)
+
+    if(pdt.discount == 0):
+        pdt.discount = 1
+        pdt.save()
+    else:
+        pdt.discount = 0
+        pdt.save()
+    
+    return redirect('products:adddiscount')
+

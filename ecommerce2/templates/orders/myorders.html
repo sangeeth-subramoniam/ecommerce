@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_tags %}
+
+{% block title %}
+
+Product-Home
+
+{% endblock %}
+
+{% block leftnav %}
+
+    <div class="right-nav">
+        <hr>
+        <h1> Categories : </h1><br>
+
+            <div class="container">
+                {% for cat in category %}
+
+                    <h4><a href="{% url 'homepage:category' cat.categoryid %}" style="align-items: center;"><li>{{cat.categoryname}}</li></a></h4>
+
+                {% endfor %}
+            </div>
+
+
+        <hr>
+        <br><br>
+
+        <ul>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            
+        </ul>
+    </div>
+
+
+{% endblock %}
+
+
+{% block rightnav %}
+
+    <div class="right-nav">
+        <hr>
+
+        <div style="border: 2px solid black; padding:15px; margin: 0px 0px 0px 0px; margin-right: 10px; margin-left: -1px;">
+            <h3> <u> ORDER SUMMARY : </u> </h3>
+            <br>
+            <h4>Total items : {{cart_count}}</h4> <br>
+            <h4>Total cost : {{totalcost}}</h4><br><br>
+            <a href="{% url 'orders:createorder' %}"><button class="btn btn-success" style="width: 100%;">Place Order</button></a>
+        </div>
+        
+
+        <br><br><br><br>
+
+        <h1>test title</h1>
+
+        <br><br><br>
+
+        <ul>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            
+        </ul>
+    </div>
+
+{% endblock %}
+
+
+<div class="container">
+{% block body %}
+
+        <br>
+        <h1 id="top-section" style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
+        <br>
+        <form action = " {% url 'homepage:home' %}" enctype="multipart/form-data" method="POST">
+            <div class="container sign-form">
+                {% csrf_token %}
+                
+                {{ form|as_bootstrap  }}
+            
+                <!-- {{ user_profileform.as_p }} -->
+                <input type="submit" class = 'btn btn-outline-secondary' name="submit" value="Search">
+            </div>
+        </form>
+        <br>
+
+        <!--
+            <form action="#" method="post">
+                {% csrf_token %}
+                <div class="container sub-nav-container" style="background: #d3d3d3; height:2.6%; border-radius: 15px 15px 15px 15px; text-align: center; " >
+                    <div class="row center">
+                            <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                                <input class="form-control maniplulate-button" type="submit" value="sort_asc" name="manipulation_type">
+                            </div>
+                        
+                        <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                            <input class="form-control maniplulate-button" type="submit" value="sort_desc" name="manipulation_type">
+                        </div>
+
+                        <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                            <input class="form-control maniplulate-button" type="submit" value="recent" name="manipulation_type">
+                        </div>
+
+                        <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                            <input class="form-control maniplulate-button" type="submit" value="most popular" name="manipulation_type">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        <br><br><br>
+        <hr>
+        -->
+
+
+        <div class="container" >
+
+            <hr>
+            <h1>My Orders : </h1><br>
+            <div class="container">
+            {% if myorders %}
+                {% for order in myorders %}
+                    <div class="jumbotron">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <h5><b>Order id :</b> {{order.orderid}}</h5> <br>
+                                <h5><b>Placed by :</b> {{order.customerid}}</h5> <br>
+                                <h5><b>Date :</b> {{order.orderdate}}</h5> <br>
+                                <h5><b>Status :</b> {{order.order_complete}}</h5> <br>
+                                <h5><b>Total Amount :</b> ₹{{order.totalcost}}</h5> <br>
+                                {% if order.deliverystatus %}
+                                    <h5><b>Delivery Status :</b> Delivered Successfully !!</h5> <br>
+                                {% else %}
+                                    <h5><b>Delivery Status :</b> On progress !!</h5> <br>
+                                {% endif %}
+                                <br>
+                            </div>
+
+                            <div class="col-lg-8">
+                                
+                                {% for corres_pdts in corres_order_details %}
+
+                                    
+                                    {% if corres_pdts.order.orderid == order.orderid %}
+                                        <a href="{% url 'products:home' corres_pdts.product.productid  %}">
+                                            <img style = " height: 50px; width: 80px; margin:10px" src={{corres_pdts.product.picture.url}} alt="broken">
+                                        </a>
+                                        
+                                    {% endif %}
+
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+
+                        <a href="{% url 'orders:orderdetail' order.orderid %}">Learn More</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+            <br><br>
+                <h3>You have no orders! We are looking forward to serve you ! </h3>
+                <br><b></b>
+            {% endif %}
+            </div>
+        </div>
+            <hr>
+
+            
+
+            <br>
+            
+
+
+{% endblock %}
+</div>
+
+
+
+<!--
+
+    buttons as form
+
+    <form enctype="multipart/form-data" method="POST">
+                                <div class="container sign-form">
+                                    {% csrf_token %}
+                                    <input class="form-control btn-warning " type="submit" value="EDIT QUANTITY" name="edit_quantity">
+                                    <br>
+                                    <input class="form-control btn-danger " type="submit" value="REMOVE FROM CART" name="REMOVE FROM CART">
+                                </div>
+                            </form>
+
+-->

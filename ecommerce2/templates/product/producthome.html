@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_tags %}
+
+{% block title %}
+
+Product-Home
+
+{% endblock %}
+
+{% block leftnav %}
+
+    <div class="right-nav">
+        <hr>
+        <h1> Categories : </h1><br>
+
+            <div class="container">
+                {% for cat in category %}
+
+                    <h4><a href="{% url 'homepage:category' cat.categoryid %}" style="align-items: center;"><li>{{cat.categoryname}}</li></a></h4>
+
+                {% endfor %}
+            </div>
+
+
+        <hr>
+        <br><br>
+
+        <ul>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            
+        </ul>
+    </div>
+
+
+{% endblock %}
+
+
+{% block rightnav %}
+
+    <div class="right-nav">
+        <hr>
+        <h1> This comes from template betsu </h1>
+
+        <br><br><br><br>
+
+        <h1>test title</h1>
+
+        <br><br><br>
+
+        <ul>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            
+        </ul>
+    </div>
+
+{% endblock %}
+
+
+<div class="container">
+{% block body %}
+
+        <br>
+        <h1 id="top-section" style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
+        <br>
+        <form action = " {% url 'homepage:home' %}" enctype="multipart/form-data" method="POST">
+            <div class="container sign-form">
+                {% csrf_token %}
+                
+                {{ form|as_bootstrap  }}
+            
+                <!-- {{ user_profileform.as_p }} -->
+                <input type="submit" class = 'btn btn-outline-secondary' name="submit" value="Search">
+            </div>
+        </form>
+        <br>
+
+        <!--
+            <form action="#" method="post">
+                {% csrf_token %}
+                <div class="container sub-nav-container" style="background: #d3d3d3; height:2.6%; border-radius: 15px 15px 15px 15px; text-align: center; " >
+                    <div class="row center">
+                            <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                                <input class="form-control maniplulate-button" type="submit" value="sort_asc" name="manipulation_type">
+                            </div>
+                        
+                        <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                            <input class="form-control maniplulate-button" type="submit" value="sort_desc" name="manipulation_type">
+                        </div>
+
+                        <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                            <input class="form-control maniplulate-button" type="submit" value="recent" name="manipulation_type">
+                        </div>
+
+                        <div class="col-lg-3 bodynav" style="margin-top: 0.6%;">
+                            <input class="form-control maniplulate-button" type="submit" value="most popular" name="manipulation_type">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        <br><br><br>
+        <hr>
+        -->
+
+
+        <div class="container">
+
+        <h3>cheeck {{ product.picture.url }}</h3>
+
+            <hr>
+                <div class="container" style="overflow: hidden; background: #faf9f9;">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <h1 style=" text-align: left; margin-left: 10%; margin-top: 1%; text-transform: uppercase;">{{product.productname}}</h1><br>
+                            <img class="product-display" src="{{ product.picture.url }}" alt="error" style="width:70%; margin: 0% 0% 0% 10%;">
+                        </div>
+                        <div class="col-lg-5" style="text-align: left; margin: 5% 0% 0% -5%;">
+                            
+                            <span>
+                                <a href="{% url 'products:addtocart' product.productid %}"><button class="btn btn-primary" style="width: 100%;"> ADD TO CART </button></a>
+                                <br> <br>
+                                <button id="confirmpurchase" class="btn btn-success" style="width: 100%;"> BUY NOW </button>
+                            </span>
+                            <br><br>
+                            
+                            <b>productname :</b> <h1 style="text-transform: capitalize;">{{product.productname}}</h1>
+                            <br>
+                            <b>productid:</b> <h1>{{product.productid}}</h1>                            
+                            <b>product price :</b> <h1>{{product.unit_price}}</h1>
+                            <b>product stock :</b> <h1>{{product.instock}}</h1>
+                            <b>product desc :</b> <h1>{{product.productdescription}}</h1>
+                            <br><br>
+                            <span style="padding: 20px; width: 100%;">
+                                {% if liked %}
+                                    <a href="{% url 'likes:like' product.productid %}"><button class="fa fa-thumbs-up btn btn-success" style="margin : 5px;"> UNLIKE </button></a>
+                                {% else %}
+                                    <a href="{% url 'likes:like' product.productid %}"><button class="fa fa-thumbs-up btn btn-success" style="margin : 5px;"> LIKE </button></a>
+                                {% endif %}                                
+                                <button class="fas fa-share-alt btn btn-warning" style="margin : 5px;"> Share </button>
+                                <button class="fas fa-flag btn btn-danger" style="margin : 5px;"> REPORT </button>
+                            </span>
+                            <br><br>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            <br>
+            <hr>
+            <div class="likes">
+                <br>
+                    <a href="#"><h1>Likes : {{like_count}} </h1></a>
+                    
+                <br>
+            </div>
+            <hr>
+            <br><br>
+                <h1>DESCRIPTION :</h1>
+                <br>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, ipsam accusantium vero molestias vitae quidem aut libero. Illum eaque explicabo suscipit ipsa quae voluptas est blanditiis impedit, consequuntur, eum nihil error nobis dolore hic sed fugit porro molestias deserunt unde, aspernatur sapiente eius! Sequi non blanditiis aliquid ipsa, est obcaecati? Soluta veritatis modi qui eveniet nobis repellendus quos sapiente distinctio atque dicta saepe deleniti voluptatibus ut quo, ea perferendis tenetur quasi quia maxime illum odio facilis repudiandae! Provident ullam exercitationem dicta, quo quos perspiciatis vel quis sapiente cumque asperiores consequatur! Laboriosam inventore illum iste perspiciatis ullam. Fugiat optio quod repellat suscipit voluptates totam voluptate esse tempora dicta iste. Culpa id nemo quod numquam modi similique veniam! Quod aliquam aut autem, assumenda dicta eligendi unde architecto, beatae quidem optio nesciunt, est consequatur magni numquam culpa nihil. Explicabo reiciendis soluta nisi, voluptas quo ea esse, cupiditate eligendi nostrum nihil accusantium error, dolorum veritatis illum. Quia quis adipisci voluptatum omnis consectetur cum vero, sint eligendi laborum repudiandae incidunt. Sint possimus accusamus ducimus earum reprehenderit delectus similique perspiciatis quas, pariatur quidem voluptatum iusto accusantium itaque molestias at alias autem, laboriosam obcaecati sed? Facere inventore fuga ex? Voluptas exercitationem cumque maxime, ut repudiandae similique minima?</p>
+                
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, obcaecati sunt. Praesentium molestias repudiandae temporibus facere nemo nesciunt laudantium iure consectetur accusantium culpa voluptatem aperiam est quas expedita, doloremque, at minus magnam ratione alias exercitationem facilis distinctio velit. Voluptatem reiciendis, neque aliquid quae iure saepe. Sapiente officia ad tempore omnis aut laudantium deserunt ratione pariatur delectus exercitationem fugit adipisci ea voluptas modi quod consectetur minima, obcaecati facilis! Repellendus nam facilis reiciendis hic, ut recusandae. Quo cumque officia modi a cupiditate amet alias quaerat laborum magnam delectus ratione inventore cum soluta omnis ut error perspiciatis beatae nihil porro autem, nam deleniti? </p>
+                <br>
+
+            <hr>
+
+            <br><br>
+
+                <h1>Reviews : </h1><br>
+
+                <form action = " {% url 'reviews:review' product.productid %}" enctype="multipart/form-data" method="POST">
+                    <div class="reviewform">
+                        {% csrf_token %}
+                        <fieldset class="rating">
+                            <input type="radio" id="star5" name="rating" value="5" required="true"/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star3half" name="rating" value="3.5" checked /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </fieldset>
+                        <br><br><br>
+                        {{ reviewForm|as_bootstrap  }}            
+                    </div>
+                    
+                    <input type="submit" class = 'btn btn-outline-secondary' name="submit" value="Submit">
+                </form>
+                <br><br>
+
+                {% if pdtreviews %}
+                    <div class="container" >
+                        <div class="user-review">
+                            {% if pdtreviews.reviewed_by == request.user %}
+                            <div class="row" style="border: 3px solid black;background-color: #607b9d;">
+                            {% else %}
+                            <div class="row" style="border: 3px solid black;">
+                            {% endif %}
+                                <div class="col-lg-4">
+                                    <span><i class="fas fa-user fa-2x fa-pull-left fa-circle" style="margin : 15px; margin-left: 0px ; padding : 10px ;border: 5px solid black; border-radius: 20px;"></i> <h3 style="margin : 15px; margin-left: 0px ; padding : 10px ;"> {{pdtreviews.reviewed_by}} </h3> </span>
+                                </div>
+                                <div class="col-lg-8">
+                                    <span style="margin : 30px; margin-left: 0px ; padding : 10px ; text-align: right;"><h3>{{pdtreviews.stars}} <i class="fa fa-star fa-pull-right " aria-hidden="false"></i></h3></span>
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h3><u>{{pdtreviews.review_title}}</u></h3>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h3 style="text-align: right;">( <i class="far fa-calendar-alt"></i> <u>{{pdtreviews.reviewed_time}}</u> ) </h3>
+                                </div>
+                                
+                            </div>
+                            <br><br>
+                            <div class="row">
+                                <h5>{{pdtreviews.review_content}}</h5>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    
+                                </div>
+                                <div class="col-lg-2">
+                                    {% if pdtreviews.reviewed_by == request.user %}
+                                    <a href="{% url 'reviews:delete_review' pdtreviews.reviewid %}" onclick="return confirm( 'Are you sure you want to delete the review ?' ) "><button style="width: 100%;" class="btn btn-outline-danger" > Delete </button></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <br><br>
+                            <div class="row" >
+                                <div class="col-lg-12">
+                                    <a href="{% url 'reviews:review' product.productid %}" style="text-decoration: none;"><h5 style="text-align: center; ">Click Here to see more reviews !</h5></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+
+                    <div class="container">
+                        <div class="row" style="border: 3px solid black; padding: 10px;">
+                            <div class="col-lg-12">
+                                <h3 style="text-align: center;"> This products has no reviews yet ! </h3>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <br>
+                <hr>
+
+                <br><br><br>
+
+                <h1>SIMILAR PRODUCTS :</h1>
+                <hr>
+
+                <div class="row related-scroller">
+            
+                    {% for rpdt in related_items %}
+                        <a href="{% url 'products:home' rpdt.productid %}">
+                            <div class="col-lg-4 pdt-box">
+                                <img class="thumbnail" src={{rpdt.picture.url}}>
+                                <div class="box-element product">
+                                    <h6><strong>Product : {{rpdt.productname}} - {{rpdt.created_at}}</strong></h6>
+                                    <hr></a>
+        
+                                    <a href="{% url 'products:addtocart' rpdt.productid %}"><button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
+                                    <a class="btn btn-outline-success" href="{% url 'products:home' rpdt.productid %}">View</a>
+                                    <h4 style="display: inline-block; float: right"><strong>₹{{rpdt.unit_price}}</strong></h4>
+        
+                                </div>
+                            </div>
+                        </a>
+                        <br> 
+                        <br><br><br><br>
+                    {% endfor %}
+                </div>
+            <br>
+            </div>
+            <hr>
+
+            <br><br>
+
+<script>
+
+
+
+    document.getElementById("confirmpurchase").onclick = function fun() {
+        
+
+        Swal.fire({
+        title: 'Are you sure you want to place order ?',
+        icon: 'question',
+        iconHtml: '?',
+        confirmButtonText: 'Place Order',
+        cancelButtonText: 'No',
+        showCancelButton: true,
+        showCloseButton: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href="/orders/instantorder"
+            } else {
+                //do nothing
+            }
+            })
+    }
+
+    
+</script>
+            
+
+
+{% endblock %}
+</div>
+

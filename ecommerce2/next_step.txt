@@ -1,0 +1,22 @@
+        OVER
+
+set a message like js pop up whenever an order is placed  - DONE
+
+right nav show recently visited - DONE 
+
+adding discount to products from homepage for admin - DONE
+
+
+
+        progress
+
+sort popular still not perfect --- looks fine now... but still keep an eye
+
+
+
+        PENDING
+
+upload to heroku
+
+add mass upload facility .... images can be uploaded to a folder with proper product names and they can be picked during mass upload automatically based on the product names
+

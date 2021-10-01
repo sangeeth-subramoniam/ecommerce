@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_tags %}
+
+{% block title %}
+
+Homepage
+
+{% endblock %}
+
+{% block leftnav %}
+
+    <div class="right-nav">
+        <hr>
+        <h1> Categories : </h1><br>
+
+            <div class="container">
+                {% for cat in category %}
+
+                    <h4><a href="{% url 'homepage:category' cat.categoryid %}" style="align-items: center;"><li>{{cat.categoryname}}</li></a></h4>
+
+                {% endfor %}
+            </div>
+
+
+        <hr>
+        <br><br>
+
+        <ul>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            
+        </ul>
+    </div>
+
+
+{% endblock %}
+
+
+{% block rightnav %}
+
+    <div class="right-nav">
+        <hr>
+        
+        <h4>TEST RIGHT NAV CONTENT</h4>
+
+        <br><br>
+        
+        <a href="#"><h3 style="color: black;"><i class="fas fa-address-book"> contact us </i></h3></a> <br>
+        <a href="#"><h3 style="color: black;"><i class="fas fa-question"> FAQ </i></h3></a> <br>
+        <a href="#"><h3 style="color: black;"><i class="fas fa-handshake"> About us </i></h3></a><br>
+        <a href="#"><h3 style="color: black;"><i class="fas fa-copyright"> Policies </i></h3></a>
+        <br><br>
+        
+        <hr>
+        <br>
+
+        <h1>Our Partners : </h1> <br>
+
+        <div class="row">
+            <div class="col-lg-4" style="margin : 1px; margin-top: 20px;">
+                <a href="https://shop.adidas.jp/" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" src="{% static 'partners/adidas.jpg' %}" alt="not available"></a>
+            </div>
+
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-lg-4" style="margin : 1px; margin-top: 20px;">
+                <a href="https://www.nike.com/jp/" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" src="{% static 'partners/nike.png' %}" alt="not available"></a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4" style="margin : 1px; margin-top: 20px;">
+                <a href="https://www.calvinklein.com/jp/en/home" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" src="{% static 'partners/calvinklein.svg.png' %}" alt="not available"></a>
+            </div>
+
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-lg-4" style="margin : 1px; margin-top: 20px;">
+                <a href="https://jp.louisvuitton.com/jpn-jp/homepage" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" src="{% static 'partners/luisvuitton.svg.png' %}" alt="not available"></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4" style="margin : 1px; margin-top: 20px;">
+                <a href="https://www.underarmour.co.jp/ja-jp/" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" src="{% static 'partners/underarmour.svg.png' %}" alt="not available"></a>
+            </div>
+
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-lg-4" style="margin : 1px; margin-top: 20px;" >
+                <a href="https://www.nike.com/jp/" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" src="{% static 'partners/nike.png' %}" alt="not available"></a>
+            </div>
+        </div>
+
+        <br><br>
+
+        <hr>
+        <br>
+        <ul>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            
+        </ul>
+    </div>
+
+{% endblock %}
+
+
+<div class="container">
+{% block body %}
+
+
+
+        
+
+        <br>
+        <h1 id="top-section" style="align-items: center;  color: #485e79;"> Welcome , {{user.username}}!!</h1> 
+        <br>
+        <form enctype="multipart/form-data" method="POST">
+            <div class="container sign-form">
+                {% csrf_token %}
+                
+                {{ form|as_bootstrap  }}
+            
+                <!-- {{ user_profileform.as_p }} -->
+                <input type="submit" class = 'btn btn-outline-secondary' name="submit" value="Search">
+            </div>
+        </form>
+        <br>
+        <form action="{% url 'homepage:home' %}" method="post">
+            {% csrf_token %}
+            <div class="container sub-nav-container" style="background: #d3d3d3; height:3%; border-radius: 15px 15px 15px 15px; text-align: center;" >
+                <div class="row center">
+                        <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
+                            <input style="background-color: #485e79;" class="form-control maniplulate-button " type="submit" value="sort_asc" name="manipulation_type">
+                        </div>
+                    
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="sort_desc" name="manipulation_type">
+                    </div>
+
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="recent" name="manipulation_type">
+                    </div>
+
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="most popular" name="manipulation_type">
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        {% if slideimgs %}
+        <br>
+
+        <hr>
+        <h1 style="text-align: center;"> SALE ! </h1>
+        <br>
+        <div class="container sliderimg" style="background-color: rgb(243, 241, 241);">
+                <div class="row" >
+                    <div class="col-lg-2">
+                        <button class="btn btn-outline-secondary sale-button" onclick="plusDivs(-1)" style="height:80%; margin-top: 70px; ">&#10094;</button>
+                    </div>
+                    <div class="col-lg-8">
+                        {% for imgs in slideimgs %}                
+                            <a href="{% url 'products:home' imgs.productid %}"><img class="mySlides" src="{{imgs.picture.url}}" style="height: 600px; max-height:700px;; width: 100%; margin: 5% 0%; border-radius: 20px;"></a>
+                        {% endfor %}                        
+                    </div>
+                    <div class="col-lg-2">
+                        <button class="btn btn-outline-secondary sale-button" onclick="plusDivs(+1)" style="height:80%; margin-top: 70px; float: right;">&#10095;</button>
+                    </div>
+                </div>
+        </div>
+
+        <hr>
+
+        {% endif %}
+
+        <br><br>
+        <div class="pagenumber">
+            <div class="row">
+                <div class="col-md-4 paginatorleftarrow"  style="text-align: right;">
+                    {% if product.has_previous %}
+                        <a href="{% url 'homepage:home' %}?page={{product.previous_page_number }}"> <b style="text-align: right; color: #485e79;"><--</b> </a>
+                    {%endif%}
+                </div>
+
+                <div class="col-md-4">
+                    <p style="text-align: center;">Showing Page : {{product.number}} / {{pgcount}} ({{per_page}} results)</p>
+                </div>
+        
+                <div class="col-md-4 paginatorrightarrow"  style="text-align: left;">
+                    {% if product.has_next %}
+                        <a href="{% url 'homepage:home' %}?page={{product.next_page_number}}"> <b style="text-align: left; color: #485e79;">--></b> </a>
+                    {%endif%}
+                </div>
+        
+            </div>
+        </div>
+        
+        
+        <br>
+        <hr>
+
+        <div class="row" style="background: #faf9f9;">
+            
+            {% for pdt in product %}
+                    <div class="col-lg-4 pdt-box">
+                        <a href="{% url 'products:home' pdt.productid %}">
+                        <img class="thumbnail" src={{pdt.picture.url}}>
+                        <div class="box-element product">
+                            <h6><strong>Product : {{pdt.productname}} - {{pdt.created_at}}</strong></h6>
+                            <hr></a>
+
+                    <a href="{% url 'products:addtocart' pdt.productid %}"> <button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
+                    <a class="btn btn-outline-success" href="{% url 'products:home' pdt.productid %}">View</a>
+                    <h4 style="display: inline-block; float: right"><strong>₹{{pdt.unit_price}}</strong></h4>
+
+                        </div>
+                    </div>
+                <br> 
+                <br><br><br><br>
+            {% endfor %}
+        </div>
+
+        <script>
+            var intervalID = window.setInterval(myCallback, 5000);
+            function myCallback() {
+                plusDivs(+1);
+            }
+
+
+            var slideIndex = 1;
+            showDivs(slideIndex);
+
+            function plusDivs(n) {
+            showDivs(slideIndex += n);
+            }
+
+            function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = x.length} ;
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex-1].style.display = "block";
+            }
+
+            
+        </script>
+
+
+
+
+{% endblock %}
+</div>

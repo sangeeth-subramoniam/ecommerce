@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_tags %}
+
+{% block title %}
+
+Product-Home
+
+{% endblock %}
+
+{% block leftnav %}
+
+    <div class="right-nav">
+        <hr>
+        <h1> Categories : </h1><br>
+
+            <div class="container">
+                {% for cat in category %}
+
+                    <h4><a href="{% url 'homepage:category' cat.categoryid %}" style="align-items: center;"><li>{{cat.categoryname}}</li></a></h4>
+
+                {% endfor %}
+            </div>
+
+
+        <hr>
+        <br><br>
+
+        <ul>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            
+        </ul>
+    </div>
+
+
+{% endblock %}
+
+
+{% block rightnav %}
+
+    <div class="right-nav">
+        <hr>
+        <h1> This comes from template betsu </h1>
+
+        <br><br><br><br>
+
+        <h1>test title</h1>
+
+        <br><br><br>
+
+        <ul>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            
+        </ul>
+    </div>
+
+{% endblock %}
+
+
+<div class="container" style="width: 600px;">
+    {% block body %}
+
+        <br>
+        <h1 id="top-section" style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
+        <br>
+        <form action = " {% url 'homepage:home' %}" enctype="multipart/form-data" method="POST">
+            <div class="container sign-form">
+                {% csrf_token %}
+                
+                {{ form|as_bootstrap  }}
+            
+                <!-- {{ user_profileform.as_p }} -->
+                <input type="submit" class = 'btn btn-outline-secondary' name="submit" value="Search">
+            </div>
+        </form>
+        <br>
+
+        <div class="container" >
+
+            <hr>
+
+            <br><br>
+
+                <h1>Reviews : </h1><br>
+
+                <form action = " {% url 'reviews:review' product.productid %}" enctype="multipart/form-data" method="POST">
+                    <div class="reviewform">
+                        
+                        {% csrf_token %}
+                        
+                        <fieldset class="rating">
+                            
+                            <input type="radio" id="star5" name="rating" value="5" required="true"/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                            <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                            <input type="radio" id="star3half" name="rating" value="3.5" checked/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                            <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                        </fieldset> 
+                        <br><br><br>
+                        {{ reviewform|as_bootstrap  }}            
+                    </div>
+                    
+                    <input type="submit" class = 'btn btn-outline-secondary' name="submit" value="Submit">
+                </form>
+                <br><br>
+            
+            <br><br>
+
+            {% for pdtreview in review %}
+
+                <div class="container">
+                    <div class="user-review">
+                        {% if pdtreview.reviewed_by == request.user %}
+                        <div class="row" style="border: 3px solid black; background-color: #607b9d;">
+                        {% else %}
+                        <div class="row" style="border: 3px solid black;">
+                        {% endif %}
+                            <div class="col-lg-4">
+                                    <span><i class="fas fa-user fa-2x fa-pull-left" style="margin : 15px; margin-left: 0px ; padding : 10px ;border: 5px solid black; border-radius: 20px;"></i> <h3 style="margin : 15px; margin-left: 0px ; padding : 10px ;"> {{pdtreview.reviewed_by}} </h3> </span>
+                            </div>
+                            <div class="col-lg-8">
+                                <span style="margin-top : 50px; margin-left: 0px ; padding : 10px ; text-align: right;"><h3>{{pdtreview.stars}} <i class="fa fa-star fa-pull-right " aria-hidden="false"></i></h3></span>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="row">
+                            <h3><u>{{pdtreview.review_title}}</u></h3>
+                        </div>
+                        <br><br>
+                        <div class="row">
+                            <h5>{{pdtreview.review_content}}</h5>
+                        </div>
+                        <br><br>
+                        
+                        <div class="row">
+                            <div class="col-lg-10">
+                                
+                            </div>
+                            <div class="col-lg-2">
+                                {% if pdtreview.reviewed_by == request.user %}
+                                <a href="{% url 'reviews:delete_review' pdtreview.reviewid %}" onclick="return confirm( 'Are you sure you want to delete the review ?' ) "><button style="width: 100%;" class="btn btn-outline-danger" > Delete </button></a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                    
+                    
+
+                <br>
+                <hr>
+
+                <br><br><br>
+
+            {% endfor %}
+
+            
+            
+
+        </div>
+{% endblock %}
+</div>
+
+

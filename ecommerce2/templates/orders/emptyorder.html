@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_tags %}
+
+{% block title %}
+
+Empty Order
+
+{% endblock %}
+
+{% block body %}
+
+    
+
+<script>
+
+    window.addEventListener("load", function(){
+
+        Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Looks like your order was placed with an empty cart! Please add items before placing order! ',
+            text: 'Redirecting to homepage... ',
+            showConfirmButton: false,
+            timer: 5000
+    });
+
+    window.setTimeout(function(){
+
+        // Move to a new location or you can do something else
+        window.location.href="/"
+
+    }, 5000);
+});
+
+    
+</script>
+
+{% endblock %}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap_tags %}
+
+{% block title %}
+
+Homepage
+
+{% endblock %}
+
+{% block leftnav %}
+
+    <div class="right-nav">
+        <hr>
+        <h1> Categories : </h1><br>
+
+            <div class="container">
+                {% for cat in category %}
+
+                    <h4><a href="#" style="align-items: center;" onclick = "return confirm('Please signin to continue !') "><li>{{cat.categoryname}}</li></a></h4>
+
+                {% endfor %}
+            </div>
+
+
+        <hr>
+        <br><br>
+
+        <ul>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            <a href="#"><li>click here</li></a>
+            
+        </ul>
+    </div>
+
+
+{% endblock %}
+
+
+{% block rightnav %}
+
+    <div class="right-nav">
+        <hr>
+        <h1> This comes from template betsu </h1>
+
+        <br><br><br><br>
+
+        <h1>test title</h1>
+
+        <br><br><br>
+
+        <ul>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <li>click here</li>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            <a href=""><li>click here</li></a>
+            
+        </ul>
+    </div>
+
+{% endblock %}
+
+
+<div class="container">
+{% block body %}
+
+        <br>
+        <h1 id="top-section" style="align-items: center;  color: #485e79;"> Welcome , Please Sign in to continue!!</h1> 
+        <br>
+        <form action="#" method="post">
+            {% csrf_token %}
+            <div class="container sub-nav-container" style="background: #d3d3d3; height:3%; border-radius: 15px 15px 15px 15px; text-align: center;" >
+                <div class="row center">
+                        <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
+                            <input style="background-color: #485e79;" class="form-control maniplulate-button " type="submit" value="sort_asc" name="manipulation_type" disabled>
+                        </div>
+                    
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="sort_desc" name="manipulation_type" disabled>
+                    </div>
+
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="recent" name="manipulation_type" disabled>
+                    </div>
+
+                    <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="most popular" name="manipulation_type" disabled>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <br>
+        <hr>
+
+        <div class="row" style="background: #faf9f9;">
+            
+            {% for pdt in product %}
+                    <div class="col-lg-4 pdt-box">
+                        <a href="#" onclick="return confirm('Please Signin to continue !')">
+                        <img class="thumbnail" src={{pdt.picture.url}}>
+                        <div class="box-element product">
+                            <h6><strong>Product : {{pdt.productname}} - {{pdt.created_at}}</strong></h6>
+                            <hr></a>
+
+                    <a href="#" onclick="return confirm('Please Signin to continue !')"> <button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
+                    <a class="btn btn-outline-success" href="#" onclick="return confirm('Please Signin to continue !')">View</a>
+                    <h4 style="display: inline-block; float: right"><strong>₹{{pdt.unit_price}}</strong></h4>
+
+                        </div>
+                    </div>
+                <br> 
+                <br><br><br><br>
+            {% endfor %}
+        </div>
+{% endblock %}
+</div>

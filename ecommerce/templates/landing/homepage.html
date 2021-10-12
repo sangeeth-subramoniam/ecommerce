@@ -114,7 +114,10 @@ Homepage
             </div>
         </div>
 
-        <br><br>
+        <br>
+        <hr>
+        <hr>
+        <br>
 
         <hr>
         <br>
@@ -154,7 +157,7 @@ Homepage
         
 
         <br>
-        <h1 id="top-section" style="align-items: center;  color: #485e79;"> Welcome , {{user.username}}!!</h1> 
+        <h1 id="top-section" style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
         <br>
         <form enctype="multipart/form-data" method="POST">
             <div class="container sign-form">
@@ -192,12 +195,15 @@ Homepage
 
         {% if slideimgs %}
         <br>
-
-        <hr>
-        <h1 style="text-align: center;"> SALE ! </h1>
+        <div class="container salecontainer">
+            <div>
+                <h1 style="text-align: center;" class="neonText neonh2"> SALE ! </h1>
+                <h2 style="text-align: center;" class="neonText neonh2">  Check out the cool Summer collection sales !! </h2>
+            </div>
+        </div>        
         <br>
         <div class="container sliderimg" style="background-color: rgb(243, 241, 241);">
-                <div class="row" >
+                <div class="row sliderimgrow" >
                     <div class="col-lg-2">
                         <button class="btn btn-outline-secondary sale-button" onclick="plusDivs(-1)" style="height:80%; margin-top: 70px; ">&#10094;</button>
                     </div>

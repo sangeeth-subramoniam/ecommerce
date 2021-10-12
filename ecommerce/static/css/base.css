@@ -26,7 +26,7 @@ html, body {
 
 .thumbnail {
 	width: 100%;
-	height: 400px;
+	height: 500px;
 	-webkit-box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
 	-moz-box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
 	box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
@@ -196,12 +196,75 @@ fieldset, label { margin: 0; padding: 0; }
 
 
 
+/* STAR display non editable code */
+
+
+
+fieldset, label { margin: 0; padding: 0; }
+
+/****** Style Star Rating Widget *****/
+
+.rating-disp { 
+	border: none;
+	float: left;
+}
+
+.rating-disp > input { display: none; } 
+.rating-disp > label:before { 
+	margin: 5px;
+	font-size: 2em;
+	font-family: FontAwesome;
+	display: inline-block;
+	content: "\f005";
+}
+
+.rating-disp > .halfdisp:before { 
+	content: "\f089";
+	position: absolute;
+}
+
+.rating-disp > label { 
+	color: #ddd; 
+	float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating-disp > input:checked ~ label, /* show gold star when clicked */
+/*.rating-disp:not(:checked) > label:hover, /* hover current star */
+.rating-disp:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */ 
+
+.rating-disp > input:checked + label:hover, /* hover current star when changing rating */
+.rating-disp > input:checked ~ label:hover,
+.rating-disp > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating-disp > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+
+
+.fa-star{
+	color: gold;
+}
+
+.fa-star:hover{
+	text-shadow: 0 0 20px gold;
+}
+
+
+
+/* over star */
+
+
 .sliderimg{
 	width:100%; /* or whatever width you want. */
 	max-width:100%;
 	height: 720px;
 	max-height: 720px;
 	display: inline-block;
+}
+
+.sliderimgrow:hover{
+	background-color: #abb2bb;
+	border : 10px solid #485e79;
 }
 
 .pp-jumbo{
@@ -249,4 +312,16 @@ fieldset, label { margin: 0; padding: 0; }
 	.paginatorrightarrow{
 		margin-left: 50%;
 	}
+}
+
+.salecontainer{
+
+	color: #9399a0;
+	border-radius: 20px;
+}
+
+.salecontainer:hover{
+	color: #ccd5e1;
+	background-color: #485e79;
+	border : 10px solid #9399a0;
 }

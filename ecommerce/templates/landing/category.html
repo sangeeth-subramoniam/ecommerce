@@ -136,7 +136,13 @@ categories
             </div>
         </form>
 
-        <br><br><br>
+        <br><br>
+
+        {% with product.first as fstpdt %}
+            <h3 style="text-align: center; text-transform: uppercase;" > Showing Results for " {{fstpdt.category.categoryname}} " </h3>
+        {% endwith %}
+
+        <br><br>
         <hr>
 
         <div class="row">

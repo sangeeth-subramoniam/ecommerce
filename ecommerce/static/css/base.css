@@ -325,3 +325,8 @@ fieldset, label { margin: 0; padding: 0; }
 	background-color: #485e79;
 	border : 10px solid #9399a0;
 }
+
+
+.partnerbrandbox:hover{
+	transform: scale(1.1);
+}

@@ -5,7 +5,9 @@
 
     {% if successmessage %}
         <br>
-            <h4 style="color: rgb(2, 218, 2); margin-left: 2em;">{{successmessage}}</h4>
+            <div class="container" style="text-align: center;">
+                <h4 style="color: rgb(2, 218, 2); margin-left: 2em;">{{successmessage}}</h4>
+            </div>
         <br>
     {% endif %}
 
@@ -14,29 +16,66 @@
         <h1 style="text-align: center;">Fill in your credentials</h1>
         <br>
         <div class="container">
-            <div class="jumbotron fj">
-                <h2>Please sign in :</h2>
-                <br>
-                <form action="{% url  'registration:signin' %}" method="POST">
+            <div class="row">
+                <div class="col-lg-1">
 
-                    {% csrf_token %}
-                    <label for="username"> UserName </label>
-                    <input type="text" name = "username" placeholder="Enter the Username "  >
+                </div>
 
-                    <br>
-                    <br>
 
-                    <label for="password"> Password </label>
-                    <input type="password" name = "password" placeholder="enter the password "  >
 
-                    <br>
-                    <br>
+                <div class="col-lg-10">
+                    <div class="jumbotron fj">
+                        <h2>Please sign in :</h2>
+                        <br>
+                        <form action="{% url  'registration:signin' %}" method="POST">
+        
+                            {% csrf_token %}
 
-                    <input type="submit" value="sign in"> 
-                    <a href="{% url 'registration:change_password1' %}"><input type="button" value="Forgot Password"></a>
-                
-                </form>
-            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <h3><label for="username"> UserName </label></h3>
+                                </div>
+
+                                <div class="col-md-0">
+
+                                </div>
+
+                                <div class="col-md-8">
+                                    <h3><input type="text" name = "username" placeholder="Enter the Username "  ></h3>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <h3><label for="password"> Password </label></h3>
+                                </div>
+
+                                <div class="col-md-0">
+
+                                </div>
+
+                                <div class="col-md-8">
+                                    <h3><input type="password" name = "password" placeholder="enter the password "  ></h3>
+                                </div>
+                            </div>
+                            
+                            <br>
+        
+                            <input class="btn btn-primary" type="submit" value="sign in"> 
+                            <a href="{% url 'registration:change_password1' %}"><input type="button" class=" btn btn-warning " value="Forgot Password"></a>
+                        
+                        </form>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-1">
+                    
+                </div>
+            </div>            
         </div>
     </div>
 

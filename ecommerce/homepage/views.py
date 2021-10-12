@@ -36,6 +36,8 @@ def home(request):
             product_page = product_paginator.get_page(page_num)
 
             cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
+
+            recommended = products.objects.all().order_by('-likes')
             
 
             context = {
@@ -48,8 +50,10 @@ def home(request):
                 #'product' : product,
                 'cart_count' : cart_count ,
                 'form' : form,
-                'slideimgs' : slideimgs
+                'slideimgs' : slideimgs,
+                'recommended' : recommended
             }
+            print('recommended qs is ' , recommended)
             return render(request,'landing/homepage.html',context)
 
         else:

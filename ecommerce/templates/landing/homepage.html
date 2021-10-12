@@ -192,17 +192,17 @@ Homepage
         <br>
         <div class="container salecontainer">
             <div>
-                <h1 style="text-align: center;" class="neonText neonh2"> SALE ! </h1>
+                <h1 style="text-align: center;" class="neonText neonh2"> SALE <span class = "fire-symbol" style="color: rgb(226, 158, 10);"><i class="fas fa-fire"></span></i></i> </h1>
                 <h2 style="text-align: center;" class="neonText neonh2">  Check out the cool Summer collection sales !! </h2>
             </div>
         </div>        
         <br>
-        <div class="container sliderimg" style="background-color: rgb(243, 241, 241);">
+        <div class="container sliderimg" style=" border-radius: 50px; background-color: rgb(243, 241, 241);">
                 <div class="row sliderimgrow" >
                     <div class="col-lg-2">
                         <button class="btn btn-outline-secondary sale-button" onclick="plusDivs(-1)" style="height:80%; margin-top: 70px; ">&#10094;</button>
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-8" style="background-color: rgb(237, 237, 237);">
                         {% for imgs in slideimgs %}                
                             <a href="{% url 'products:home' imgs.productid %}"><img class="mySlides" src="{{imgs.picture.url}}" style="height: 600px; max-height:700px;; width: 100%; margin: 5% 0%; border-radius: 20px;"></a>
                         {% endfor %}                        

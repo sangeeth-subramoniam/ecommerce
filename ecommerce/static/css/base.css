@@ -53,6 +53,8 @@ html, body {
 
 .pdt-box:hover {
 	transform: scale(1.1);
+	
+	
 }
 
 .pdt-box-rightnav {
@@ -260,6 +262,16 @@ fieldset, label { margin: 0; padding: 0; }
 	height: 720px;
 	max-height: 720px;
 	display: inline-block;
+	
+	
+}
+
+.sliderimgrow{
+	transition: 0.25s;
+}
+
+.mySlides{
+	transition: 1s;
 }
 
 .sliderimgrow:hover{
@@ -318,6 +330,7 @@ fieldset, label { margin: 0; padding: 0; }
 
 	color: #9399a0;
 	border-radius: 20px;
+	transition: 0.3s;
 }
 
 .salecontainer:hover{
@@ -326,7 +339,19 @@ fieldset, label { margin: 0; padding: 0; }
 	border : 10px solid #9399a0;
 }
 
+.fire-symbol{
+	transition: 1s;
+}
 
 .partnerbrandbox:hover{
 	transform: scale(1.1);
 }
+
+.salecontainer:hover .fire-symbol{
+		color: #f5f5f5;
+		text-shadow:
+		0px -2px 4px #fff,
+		0px -2px 10px #FF3,
+		0px -10px 20px #F90,
+		0px -20px 40px #C33;
+	}

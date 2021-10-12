@@ -150,9 +150,13 @@ Product-Home
 
         <div class="container" >
 
+        
+
             {% if orderdetails %}
 
             <hr>
+            <h2 style="text-align: center;" > <u> <i class="fas fa-shopping-cart"></i> CART </u> </h2>
+            <br>
             {% for orderdetailspdt in orderdetails %}
 
                 <div class="container" style="overflow: hidden; background: #faf9f9;">
@@ -191,7 +195,10 @@ Product-Home
 
                 {% endfor %}
                 {% else %}
-                <br><br>
+
+                <br>
+                <h2 style="text-align: center;" > <u> <i class="fas fa-shopping-cart"></i> CART </u> </h2>
+                <br>
                     <h1 style="text-align: center;">No Items in your cart !!</h1>
                     <b> <p style="text-align: center;"> Continue Shopping and add items in your cart ! </p></b><br>
                     <hr>

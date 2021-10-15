@@ -100,7 +100,6 @@ Homepage
 {% block body %}
 
         <br>
-        <h1 id="top-section"  style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
         <br>
         <form enctype="multipart/form-data" method="POST">
             <div class="container sign-form">
@@ -141,24 +140,33 @@ Homepage
 
         <div class="row">
             
-            {% for pdt in product %}
-            <a href="{% url 'products:home' pdt.productid %}">
-                <div class="col-lg-4 pdt-box">
-                    <img class="thumbnail" src={{pdt.picture.url}}>
-                    <div class="box-element product">
-                        <h6><strong>Product : {{pdt.productname}} - {{pdt.created_at}}</strong></h6>
-                        <hr>
-            </a>
-                        <a href="{% url 'products:addtocart' pdt.productid %}"><button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
-                        <a class="btn btn-outline-success" href="{% url 'products:home' pdt.productid %}">View</a>
-                        <h4 style="display: inline-block; float: right"><strong>₹{{pdt.unit_price}}</strong></h4>
+            {% if product %}
+                {% for pdt in product %}
+                <a href="{% url 'products:home' pdt.productid %}">
+                    <div class="col-lg-4 pdt-box">
+                        <img class="thumbnail" src={{pdt.picture.url}}>
+                        <div class="box-element product">
+                            <h6><strong>Product : {{pdt.productname}} - {{pdt.created_at}}</strong></h6>
+                            <hr>
+                </a>
+                            <a href="{% url 'products:addtocart' pdt.productid %}"><button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
+                            <a class="btn btn-outline-success" href="{% url 'products:home' pdt.productid %}">View</a>
+                            <h4 style="display: inline-block; float: right"><strong>₹{{pdt.unit_price}}</strong></h4>
 
+                        </div>
                     </div>
-                </div>
-                <br> 
-                <br><br><br><br>
-            
-            {% endfor %}
+                    <br> 
+                    <br><br><br><br>
+                
+                {% endfor %}
+            {% else %}
+                    <div class="container">
+                        <br><br><br><br>
+                        <h1 style="text-align: center;">Oops! No products match your search term :(</h1>
+                        <h4 style="text-align: center; color: #485e79;"> Please try with another one! </h4>
+                    </div>
+                
+            {% endif %}
         </div>
 
 

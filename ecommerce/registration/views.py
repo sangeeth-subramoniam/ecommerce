@@ -6,13 +6,30 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from datetime import datetime
 
 
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from .models import logs
 
 # Create your views here.
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    print('xforw is ', x_forwarded_for)
+    if x_forwarded_for:
+        #ip = x_forwarded_for.split(',')[-1]
+        ip = str(x_forwarded_for)
+        print('xforward')
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+        print('remote addr')
+    return ip
+
+
+
 def signup(request):
     registered = False
 
@@ -60,6 +77,10 @@ def signin(request):
 
         if user:
             if user.is_active:
+                getip = get_client_ip(request)
+                print('the ip used is ', getip)
+                user_log = logs(logger = username , start_time = datetime.now() , ip = getip, location = 'Japan' , status = 'pending' )
+                user_log.save()
                 login(request,user)
                 return HttpResponseRedirect(reverse('homepage:home'))
             
@@ -76,6 +97,13 @@ def signin(request):
 
 @login_required
 def signout(request):
+    try:
+        log = logs.objects.get(logger = request.user.username, status = 'pending')
+        log.end_time = datetime.now()
+        log.status = 'over'
+        log.save()
+    except:
+        print('log not found')
     request.session.clear()
     logout(request)
     return HttpResponseRedirect(reverse("homepage:home"))

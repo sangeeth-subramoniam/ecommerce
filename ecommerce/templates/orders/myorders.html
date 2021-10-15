@@ -66,7 +66,7 @@ Product-Home
             <br>
             <h4>Total items : {{cart_count}}</h4> <br>
             <h4>Total cost : {{totalcost}}</h4><br><br>
-            <a href="{% url 'orders:createorder' %}"><button class="btn btn-success" style="width: 100%;">Place Order</button></a>
+            <a href="{% url 'orders:createorder' %}"><button class="btn btn-success" style="width: 100%;" onclick="return confirm('Are you sure you want to place the order?')">Place Order</button></a>
         </div>
         
 

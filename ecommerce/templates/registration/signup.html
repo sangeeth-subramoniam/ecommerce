@@ -10,15 +10,15 @@ Signup
 {% endblock %}
 
 {% block body %}
-    <br><br>
+    <br>
     <div class="container">
         <br>
         {% if registered %}
             <h1>Thankyou for REGISTERING with us</h1>
             <br>
 		<a href="{% url 'homepage:home' %}"> click here to continue </a>
-
         {% else %}
+            <a href="{% url 'registration:signin' %}"> <h4 style="text-align: center;" > Already have an account ? </h4></a>
             <h3>PLEASE fill the registration form below</h3>
             <br>
             <!-- user the enctype attribute because we are uploading images  -->

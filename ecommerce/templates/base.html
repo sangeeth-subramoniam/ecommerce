@@ -38,7 +38,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active" style="display: inline;">
                     <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
-                    {% if request.user.id == 1 %}
+                    {% if request.user.is_superuser %}
                         <a class="nav-link" style="display: block;" href="{% url 'products:addproduct' %}" > <button class="btn btn-primary" style="background-color: white; color: black; border: 0.1px solid #ffbb33"> ADD PRODUCT </button></a>
                         <a class="nav-link" style="display: block;" href="{% url 'products:adddiscount' %}" > <button class="btn btn-primary" style="background-color: white; color: black; border: 0.1px solid #ffbb33"> ADD DISCOUNT </button></a>
                     {% endif %}

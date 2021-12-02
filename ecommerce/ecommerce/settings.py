@@ -53,6 +53,9 @@ INSTALLED_APPS = [
     'orders',
     'likes',
     'reviews',
+
+    'storages',
+
 ]
 
 MIDDLEWARE = [
@@ -129,6 +132,18 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+#AWS
+AWS_ACCESS_KEY_ID = (os.environ.get("AWS_ACCESS_KEY_ID", 'dev default value'))
+AWS_SECRET_ACCESS_KEY = (os.environ.get("AWS_SECRET_ACCESS_KEY", 'dev default value'))
+AWS_STORAGE_BUCKET_NAME = 'sangeeth-ecom'
+
+#DJANGO STORAGES  FOR S3 SUPPORT
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 # Static files (CSS, JavaScript, Images)

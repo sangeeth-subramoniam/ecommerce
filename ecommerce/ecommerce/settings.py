@@ -12,10 +12,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")
 STATIC_DIR = os.path.join(BASE_DIR,"static")
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
@@ -134,9 +136,19 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 #AWS
-AWS_ACCESS_KEY_ID = (os.environ.get("AWS_ACCESS_KEY_ID", 'dev default value'))
-AWS_SECRET_ACCESS_KEY = (os.environ.get("AWS_SECRET_ACCESS_KEY", 'dev default value'))
+
+#during deploy use the below and set the confid variables in heroku since you cannot set environment vatriable in virtualenvv
+
+#AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+#AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+
+#since using virtual env you cannot wasily get the environment variable, using directly
+AWS_ACCESS_KEY_ID = 'AKIATVGSGRPIZ25LH36M'
+AWS_SECRET_ACCESS_KEY = '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'
+
+
 AWS_STORAGE_BUCKET_NAME = 'sangeeth-ecom'
 
 #DJANGO STORAGES  FOR S3 SUPPORT

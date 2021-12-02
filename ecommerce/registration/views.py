@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from datetime import datetime
+import datetime
 
 
 from django.contrib import messages
@@ -79,7 +79,12 @@ def signin(request):
             if user.is_active:
                 getip = get_client_ip(request)
                 print('the ip used is ', getip)
-                user_log = logs(logger = username , start_time = datetime.now() , ip = getip, location = 'Japan' , status = 'pending' )
+
+                current_time = datetime.datetime.now() 
+                hours_added = datetime.timedelta(hours = 9)
+                corrected_datetime = current_time + hours_added
+
+                user_log = logs(logger = username , start_time = corrected_datetime , ip = getip, location = 'Japan' , status = 'pending' )
                 user_log.save()
                 login(request,user)
                 return HttpResponseRedirect(reverse('homepage:home'))
@@ -98,8 +103,13 @@ def signin(request):
 @login_required
 def signout(request):
     try:
-        log = logs.objects.get(logger = request.user.username, status = 'pending')
-        log.end_time = datetime.now()
+        log = logs.objects.all().filter(logger = request.user.username, status = 'pending').order_by('-start_time').first()
+        
+        current_time = datetime.datetime.now() 
+        hours_added = datetime.timedelta(hours = 9)
+        corrected_datetime = current_time + hours_added
+        
+        log.end_time = corrected_datetime
         log.status = 'over'
         log.save()
     except:

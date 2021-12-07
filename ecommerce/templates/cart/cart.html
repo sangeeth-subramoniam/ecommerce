@@ -64,7 +64,7 @@ Product-Home
             <br>
             <h4>Total items : {{cart_count}}</h4> <br>
             <h4>Total cost : ₹ {{totalcost}}</h4><br><br>
-            <a href="{% url 'orders:createorder' %}"><button class="btn btn-success" style="width: 100%;">Place Order</button></a>
+            <a href="{% url 'orders:createorder' %}"><button class="btn btn-outline-success" style="width: 100%;" onclick="return confirm('Are you sure you want to place the order?')">Place Order</button></a>
         </div>
         
 
@@ -150,9 +150,13 @@ Product-Home
 
         <div class="container" >
 
+        
+
             {% if orderdetails %}
 
             <hr>
+            <h2 style="text-align: center;" > <u> <i class="fas fa-shopping-cart"></i> CART </u> </h2>
+            <br>
             {% for orderdetailspdt in orderdetails %}
 
                 <div class="container" style="overflow: hidden; background: #faf9f9;">
@@ -191,7 +195,10 @@ Product-Home
 
                 {% endfor %}
                 {% else %}
-                <br><br>
+
+                <br>
+                <h2 style="text-align: center;" > <u> <i class="fas fa-shopping-cart"></i> CART </u> </h2>
+                <br>
                     <h1 style="text-align: center;">No Items in your cart !!</h1>
                     <b> <p style="text-align: center;"> Continue Shopping and add items in your cart ! </p></b><br>
                     <hr>
@@ -211,7 +218,7 @@ Product-Home
                 <hr>
                 <br>
                 <a href="{% url 'homepage:home' %}"><button class="btn btn-primary" style="width: 80%; margin: 0 10%;"> CONTINUE SHOPPING </button><br><br></a>
-                <a href="{% url 'orders:createorder' %}"><button class="btn btn-success" style="width: 80%; margin: 0 10%;"> PLACE ORDER </button><br></a>
+                <a href="{% url 'orders:createorder' %}"><button class="btn btn-success" style="width: 80%; margin: 0 10%;" onclick="return confirm('Are you sure you want to place the order?')"> PLACE ORDER </button><br></a>
                 <br>
                 <br>
             

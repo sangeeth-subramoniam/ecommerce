@@ -26,7 +26,7 @@ html, body {
 
 .thumbnail {
 	width: 100%;
-	height: 400px;
+	height: 500px;
 	-webkit-box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
 	-moz-box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
 	box-shadow: -1px -3px 5px -2px rgba(214, 214, 214, 1);
@@ -53,6 +53,8 @@ html, body {
 
 .pdt-box:hover {
 	transform: scale(1.1);
+	
+	
 }
 
 .pdt-box-rightnav {
@@ -61,6 +63,10 @@ html, body {
 
 .pdt-box-rightnav:hover {
 	transform: scale(1.1);
+}
+
+.right-div-thumbnail{
+	height: 400px;
 }
 
 
@@ -81,12 +87,15 @@ html, body {
 	color: white;
 	border-radius: 11px;
 	height: max-content;
+	border: 3px solid #485463;
+	transition: 0.3s;
 }
 
 .maniplulate-button:hover{
 	transform: scale(1.1);
 	overflow: auto;
 	overflow-y: hidden;
+	border: 4px solid gold;
 }
 
 .product-display{
@@ -196,12 +205,90 @@ fieldset, label { margin: 0; padding: 0; }
 
 
 
+/* STAR display non editable code */
+
+
+
+fieldset, label { margin: 0; padding: 0; }
+
+/****** Style Star Rating Widget *****/
+
+.rating-disp { 
+	border: none;
+	float: left;
+}
+
+.rating-disp > input { display: none; } 
+.rating-disp > label:before { 
+	margin: 5px;
+	font-size: 2em;
+	font-family: FontAwesome;
+	display: inline-block;
+	content: "\f005";
+}
+
+.rating-disp > .halfdisp:before { 
+	content: "\f089";
+	position: absolute;
+}
+
+.rating-disp > label { 
+	color: #ddd; 
+	float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating-disp > input:checked ~ label, /* show gold star when clicked */
+/*.rating-disp:not(:checked) > label:hover, /* hover current star */
+.rating-disp:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */ 
+
+.rating-disp > input:checked + label:hover, /* hover current star when changing rating */
+.rating-disp > input:checked ~ label:hover,
+.rating-disp > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating-disp > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+
+
+.fa-star{
+	color: gold;
+}
+
+.fa-star:hover{
+	text-shadow: 0 0 20px gold;
+}
+
+
+
+/* over star */
+
+
 .sliderimg{
 	width:100%; /* or whatever width you want. */
 	max-width:100%;
-	height: 720px;
-	max-height: 720px;
+	height: 920px;
+	max-height: 920px;
 	display: inline-block;
+	
+	
+}
+
+.sliderimgrow{
+	height: 920px;
+	max-height: 920px;
+	transition: 0.25s;
+}
+
+.mySlides{
+	height: 920px;
+	max-height: 920px;
+	transition: 1s;
+}
+
+.sliderimgrow:hover{
+	background-color: #abb2bb;
+	border-radius: 0px;
+	border: 2px solid #7999c4;
 }
 
 .pp-jumbo{
@@ -249,4 +336,63 @@ fieldset, label { margin: 0; padding: 0; }
 	.paginatorrightarrow{
 		margin-left: 50%;
 	}
+}
+
+.salecontainer{
+
+	color: #9399a0;
+	border-radius: 20px;
+	transition: 0.3s;
+	border: 2px solid black;
+	padding: 5px;
+}
+
+.salecontainer:hover{
+	border: 4px solid gold;
+}
+
+.sale-section{
+	transition: 0.3s;
+}
+
+.sale-section:hover{
+	color: #ccd5e1;
+	background-color: #485e79;
+	border : 10px solid #9399a0;
+}
+
+.fire-symbol{
+	transition: 2s;
+	animation-iteration-count: 1;
+	
+}
+
+
+.partnerbrandbox:hover{
+	transform: scale(1.1);
+}
+
+.sale-section:hover .fire-symbol{
+		
+		color: #f5f5f5;
+		text-shadow:
+		0px -2px 4px #fff,
+		0px -2px 10px #FF3,
+		0px -10px 20px #F90,
+		0px -20px 40px #C33;
+	}
+
+.swal-overlay {
+	background-color: rgba(0, 253, 194, 0.45);
+}
+
+
+/* search form label css */
+.control-label{
+	text-transform: uppercase;
+	font-size: large;
+}
+
+.test:hover{
+	transform: scale(1.1);
 }

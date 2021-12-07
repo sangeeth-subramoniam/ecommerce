@@ -5,7 +5,7 @@
 
             <div class="pdt-box-rightnav">
                 <a href="{% url 'products:home' request.session.current_pdt_id  %}">
-                <img class="thumbnail" src={{request.session.current_pdt_pic}}>
+                <img class="thumbnail right-div-thumbnail" src={{request.session.current_pdt_pic}}>
                 <div class="box-element product">
                     <h6><strong>Product : {{ request.session.current_pdt_name }}</strong></h6>
                     <hr></a>

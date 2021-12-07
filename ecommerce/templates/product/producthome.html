@@ -98,9 +98,6 @@ Product-Home
 
 <div class="container">
 {% block body %}
-
-        <br>
-        <h1 id="top-section" style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
         <br>
         <form action = " {% url 'homepage:home' %}" enctype="multipart/form-data" method="POST">
             <div class="container sign-form">
@@ -162,10 +159,88 @@ Product-Home
                             
                             <b>productname :</b> <h1 style="text-transform: capitalize;">{{product.productname}}</h1>
                             <br>
-                            <b>productid:</b> <h1>{{product.productid}}</h1>                            
+                            <b>productid:</b> <h1>{{product.productid}}</h1>                          
                             <b>product price :</b> <h1>{{product.unit_price}}</h1>
                             <b>product stock :</b> <h1>{{product.instock}}</h1>
-                            <b>product desc :</b> <h1>{{product.productdescription}}</h1>
+                            
+
+                            {% if pdt_rating == 0 %}
+                                <br>
+                                <h4> No Ratings available! </h4>                            
+                            {% else %}
+                            <b>Ratings :</b>
+                            <br>
+                                <fieldset class="rating-disp" disabled>
+
+                                    {% if pdt_rating == 5  %}
+                                        <input type="radio" id="star5disp" name="rating-disp" value="5" required="true" checked /><label class = "fulldisp" for="star5disp" title="Awesome - 5 stars"></label>
+                                    {% else %}
+                                        <input type="radio" id="star5disp" name="rating-disp" value="5" required="true"/><label class = "fulldisp" for="star5disp" title="Awesome - 5 stars"></label>
+                                    {% endif %}
+
+                                    {% if pdt_rating == 4.5  %}
+                                        <input type="radio" id="star4halfdisp" name="rating-disp" value="4.5" checked/><label class="halfdisp" for="star4halfdisp" title="Pretty good - 4.5 stars"></label>
+                                    {% else %}
+                                        <input type="radio" id="star4halfdisp" name="rating-disp" value="4.5" /><label class="halfdisp" for="star4halfdisp" title="Pretty good - 4.5 stars"></label>
+                                    {% endif %}
+
+
+                                    {% if pdt_rating == 4  %}
+                                        <input type="radio" id="star4disp" name="rating-disp" value="4" checked/><label class = "fulldisp" for="star4disp" title="Pretty good - 4 stars"></label>
+                                    {% else %}
+                                        <input type="radio" id="star4disp" name="rating-disp" value="4" /><label class = "fulldisp" for="star4disp" title="Pretty good - 4 stars"></label>
+                                    {% endif %}
+
+
+                                    {% if pdt_rating == 3.5  %}
+                                        <input type="radio" id="star3halfdisp" name="rating-disp" value="3.5" checked/><label class="halfdispdisp" for="star3half" title="Meh - 3.5 stars"></label>
+                                    {% else %}   
+                                        <input type="radio" id="star3halfdisp" name="rating-disp" value="3.5" /><label class="halfdispdisp" for="star3half" title="Meh - 3.5 stars"></label>
+                                    {% endif %}
+
+                                    {% if pdt_rating == 3  %}
+                                        <input type="radio" id="star3disp" name="rating-disp" value="3" /><label class = "fulldisp" for="star3disp" title="Meh - 3 stars"></label>
+                                    {% else %}
+                                        <input type="radio" id="star3disp" name="rating-disp" value="3" /><label class = "fulldisp" for="star3disp" title="Meh - 3 stars"></label>
+                                    {% endif %}
+
+                                    {% if pdt_rating == 2.5  %}
+                                        <input type="radio" id="star2halfdisp" name="rating-disp" value="2.5" checked /><label class="halfdisp" for="star2halfdisp" title="Kinda bad - 2.5 stars"></label>
+                                    {% else %}
+                                        <input type="radio" id="star2halfdisp" name="rating-disp" value="2.5" /><label class="halfdisp" for="star2halfdisp" title="Kinda bad - 2.5 stars"></label>
+                                    {% endif %}
+
+                                    {% if pdt_rating == 2  %}
+                                        <input type="radio" id="star2disp" name="rating-disp" value="2" checked /><label class = "fulldisp" for="star2disp" title="Kinda bad - 2 stars"></label>
+                                    {% else %}
+                                        <input type="radio" id="star2disp" name="rating-disp" value="2" /><label class = "fulldisp" for="star2disp" title="Kinda bad - 2 stars"></label>
+                                    {% endif %}
+
+                                    {% if pdt_rating == 1.5  %}
+                                        <input type="radio" id="star1halfdisp" name="rating-disp" value="1.5" checked/><label class="halfdisp" for="star1halfdisp" title="Meh - 1.5 stars"></label>
+                                    {% else %}
+                                        <input type="radio" id="star1halfdisp" name="rating-disp" value="1.5" /><label class="halfdisp" for="star1halfdisp" title="Meh - 1.5 stars"></label>
+                                    {% endif %}
+
+                                    {% if pdt_rating == 1  %}
+                                        <input type="radio" id="star1disp" name="rating-disp" value="1" checked /><label class = "fulldisp" for="star1disp" title="Sucks big time - 1 star"></label>
+                                    {% else %}
+                                        <input type="radio" id="star1disp" name="rating-disp" value="1" /><label class = "fulldisp" for="star1disp" title="Sucks big time - 1 star"></label>
+                                    {% endif %}
+
+                                    {% if pdt_rating == 0  %}
+                                        <h4> No Ratings available! </h4>
+                                    {% else %}
+                                        <input type="radio" id="starhalfdisp" name="rating-disp" value="0.5" /><label class="halfdisp" for="starhalfdisp" title="Sucks big time - 0.5 stars"></label>
+                                    {% endif %}
+
+                                </fieldset>
+                                <br>
+                            {% endif %}
+                            <br>
+
+                            <br><b>product desc :</b> <h1>{{product.productdescription}}</h1>
+
                             <br><br>
                             <span style="padding: 20px; width: 100%;">
                                 {% if liked %}
@@ -203,8 +278,7 @@ Product-Home
 
             <br><br>
 
-                <h1>Reviews : </h1><br>
-
+                <h1>Leave a Review : </h1><br>
                 <form action = " {% url 'reviews:review' product.productid %}" enctype="multipart/form-data" method="POST">
                     <div class="reviewform">
                         {% csrf_token %}
@@ -227,7 +301,8 @@ Product-Home
                     <input type="submit" class = 'btn btn-outline-secondary' name="submit" value="Submit">
                 </form>
                 <br><br>
-
+                <br>
+                <h1>Reviews : </h1><br>
                 {% if pdtreviews %}
                     <div class="container" >
                         <div class="user-review">
@@ -306,7 +381,7 @@ Product-Home
                                     <h6><strong>Product : {{rpdt.productname}} - {{rpdt.created_at}}</strong></h6>
                                     <hr></a>
         
-                                    <a href="{% url 'products:addtocart' rpdt.productid %}"><button  class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
+                                    <a href="{% url 'products:addtocart' rpdt.productid %}"><button  class="btn btn-outline-secondary add-btn" >Add to Cart</button></a>
                                     <a class="btn btn-outline-success" href="{% url 'products:home' rpdt.productid %}">View</a>
                                     <h4 style="display: inline-block; float: right"><strong>₹{{rpdt.unit_price}}</strong></h4>
         

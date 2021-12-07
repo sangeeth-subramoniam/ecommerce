@@ -65,7 +65,7 @@ Homepage
 
         <br><br>
         
-        <a href="#"><h3 style="color: black;"><i class="fas fa-address-book"> contact us </i></h3></a> <br>
+        <a href="#"><h3 style="color: black;" ><i class="fas fa-address-book"> contact us </i></h3></a> <br>
         <a href="#"><h3 style="color: black;"><i class="fas fa-question"> FAQ </i></h3></a> <br>
         <a href="#"><h3 style="color: black;"><i class="fas fa-handshake"> About us </i></h3></a><br>
         <a href="#"><h3 style="color: black;"><i class="fas fa-copyright"> Policies </i></h3></a>
@@ -78,46 +78,44 @@ Homepage
 
         <div class="row">
             <div class="col-lg-4" style="margin : 1px; margin-top: 20px;">
-                <a href="https://shop.adidas.jp/" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" src="{% static 'partners/adidas.jpg' %}" alt="not available"></a>
+                <a href="https://shop.adidas.jp/" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" class="partnerbrandbox" src="{% static 'partners/adidas.jpg' %}" alt="not available"></a>
             </div>
 
             <div class="col-md-2">
             </div>
 
             <div class="col-lg-4" style="margin : 1px; margin-top: 20px;">
-                <a href="https://www.nike.com/jp/" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" src="{% static 'partners/nike.png' %}" alt="not available"></a>
+                <a href="https://www.nike.com/jp/" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" class="partnerbrandbox" src="{% static 'partners/nike.png' %}" alt="not available"></a>
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-4" style="margin : 1px; margin-top: 20px;">
-                <a href="https://www.calvinklein.com/jp/en/home" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" src="{% static 'partners/calvinklein.svg.png' %}" alt="not available"></a>
+                <a href="https://www.calvinklein.com/jp/en/home" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" class="partnerbrandbox" src="{% static 'partners/calvinklein.svg.png' %}" alt="not available"></a>
             </div>
 
             <div class="col-md-2">
             </div>
 
             <div class="col-lg-4" style="margin : 1px; margin-top: 20px;">
-                <a href="https://jp.louisvuitton.com/jpn-jp/homepage" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" src="{% static 'partners/luisvuitton.svg.png' %}" alt="not available"></a>
+                <a href="https://jp.louisvuitton.com/jpn-jp/homepage" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" class="partnerbrandbox" src="{% static 'partners/luisvuitton.svg.png' %}" alt="not available"></a>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4" style="margin : 1px; margin-top: 20px;">
-                <a href="https://www.underarmour.co.jp/ja-jp/" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" src="{% static 'partners/underarmour.svg.png' %}" alt="not available"></a>
+                <a href="https://www.underarmour.co.jp/ja-jp/" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" class="partnerbrandbox" src="{% static 'partners/underarmour.svg.png' %}" alt="not available"></a>
             </div>
 
             <div class="col-md-2">
             </div>
 
             <div class="col-lg-4" style="margin : 1px; margin-top: 20px;" >
-                <a href="https://www.nike.com/jp/" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" src="{% static 'partners/nike.png' %}" alt="not available"></a>
+                <a href="https://www.nike.com/jp/" target="_blank"><img style="width: 150px; height : 120px; border: 1px solid black;" class="partnerbrandbox" src="{% static 'partners/nike.png' %}" alt="not available"></a>
             </div>
         </div>
 
-        <br><br>
-
-        <hr>
         <br>
+        <hr>
         <ul>
             <a href=""><li>click here</li></a>
             <a href=""><li>click here</li></a>
@@ -154,7 +152,7 @@ Homepage
         
 
         <br>
-        <h1 id="top-section" style="align-items: center;  color: #485e79;"> Welcome , {{user.username}}!!</h1> 
+        <h1 id="top-section" style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
         <br>
         <form enctype="multipart/form-data" method="POST">
             <div class="container sign-form">
@@ -192,24 +190,32 @@ Homepage
 
         {% if slideimgs %}
         <br>
+        <div class="sale-section">
 
-        <hr>
-        <h1 style="text-align: center;"> SALE ! </h1>
-        <br>
-        <div class="container sliderimg" style="background-color: rgb(243, 241, 241);">
-                <div class="row" >
-                    <div class="col-lg-2">
-                        <button class="btn btn-outline-secondary sale-button" onclick="plusDivs(-1)" style="height:80%; margin-top: 70px; ">&#10094;</button>
-                    </div>
-                    <div class="col-lg-8">
-                        {% for imgs in slideimgs %}                
-                            <a href="{% url 'products:home' imgs.productid %}"><img class="mySlides" src="{{imgs.picture.url}}" style="height: 600px; max-height:700px;; width: 100%; margin: 5% 0%; border-radius: 20px;"></a>
-                        {% endfor %}                        
-                    </div>
-                    <div class="col-lg-2">
-                        <button class="btn btn-outline-secondary sale-button" onclick="plusDivs(+1)" style="height:80%; margin-top: 70px; float: right;">&#10095;</button>
-                    </div>
+        
+            <div class="container salecontainer">
+                <div>
+                    <h1 style="text-align: center;" class="neonText neonh2"> SALE <span class = "fire-symbol" style="color: rgb(226, 158, 10);"><i class="fas fa-fire"></span></i></i> </h1>
+                    <h2 style="text-align: center;" class="neonText neonh2">  Check out the cool Summer collection sales !! </h2>
                 </div>
+            </div>        
+            <br>
+            <div class="container sliderimg" style=" border-radius: 50px; background-color: rgb(243, 241, 241); ">
+                    <div class="row sliderimgrow" >
+                        <div class="col-lg-2">
+                            <button class="btn btn-outline-secondary sale-button" onclick="plusDivs(-1)" style="height:80%; margin-top: 70px; ">&#10094;</button>
+                        </div>
+                        <div class="col-lg-8" style="background-color: rgb(237, 237, 237);">
+                            {% for imgs in slideimgs %}                
+                                <a href="{% url 'products:home' imgs.productid %}"><img class="mySlides" src="{{imgs.picture.url}}" style="height: 800px; max-height:920px;; width: 100%; margin: 5% 0%; border-radius: 20px;"></a>
+                            {% endfor %}                        
+                        </div>
+                        <div class="col-lg-2">
+                            <button class="btn btn-outline-secondary sale-button" onclick="plusDivs(+1)" style="height:80%; margin-top: 70px; float: right;">&#10095;</button>
+                        </div>
+                    </div>
+            </div>
+
         </div>
 
         <hr>

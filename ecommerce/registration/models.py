@@ -59,3 +59,15 @@ class user_profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class logs(models.Model):
+    logid = models.AutoField(primary_key=True)
+    logger = models.CharField(max_length=100, blank=True, null=True)
+    ip = models.CharField(max_length=50 , blank=True , null = True)
+    status = models.CharField(max_length=10 , blank=True , null= True)
+    start_time = models.DateTimeField(blank=True , auto_created=True)
+    end_time = models.DateTimeField(blank=True, null=True)
+    location = models.CharField(max_length=30, blank=True , null=True)
+
+    def __str__(self):
+        return str(str(self.logid) + str(self.logger))

@@ -100,7 +100,6 @@ categories
 {% block body %}
 
         <br>
-        <h1 id="top-section" style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
         <br>
         <form action = "{% url 'homepage:home' %}" enctype="multipart/form-data" method="POST">
             <div class="container sign-form">
@@ -136,7 +135,13 @@ categories
             </div>
         </form>
 
-        <br><br><br>
+        <br><br>
+
+        {% with product.first as fstpdt %}
+            <h3 style="text-align: center; text-transform: uppercase;" > Showing Results for " {{fstpdt.category.categoryname}} " </h3>
+        {% endwith %}
+
+        <br><br>
         <hr>
 
         <div class="row">

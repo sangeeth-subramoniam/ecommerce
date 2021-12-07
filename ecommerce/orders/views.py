@@ -17,7 +17,7 @@ def myorders(request):
     
     cart_count = orderdetails.objects.filter(customer=request.user , order = None).count()
 
-    myorders = orders.objects.all().filter(customerid=request.user)
+    myorders = orders.objects.all().filter(customerid=request.user).order_by('-orderdate')
     
     corres_order_details = orderdetails.objects.filter(order__in = myorders )
 

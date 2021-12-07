@@ -12,10 +12,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")
 STATIC_DIR = os.path.join(BASE_DIR,"static")
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
@@ -28,9 +30,9 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'rujx54(%c^(ck9(zgj!2s!mtw_var4=05r+6$8=s=izaxk65d1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -53,10 +55,14 @@ INSTALLED_APPS = [
     'orders',
     'likes',
     'reviews',
+
+    'storages',
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,18 +136,43 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+#AWS
+
+#during deploy use the below and set the confid variables in heroku since you cannot set environment vatriable in virtualenvv
+
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+
+#since using virtual env you cannot wasily get the environment variable, using directly
+#AWS_ACCESS_KEY_ID = 'AKIATVGSGRPIZ25LH36M'
+#AWS_SECRET_ACCESS_KEY = '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'
+
+
+AWS_STORAGE_BUCKET_NAME = 'sangeeth-ecom'
+
+#DJANGO STORAGES  FOR S3 SUPPORT
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
 
 #MEDIA
-MEDIA_ROOT = MEDIA_DIR
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/' 
 
 
 LOGIN_URL = 'user_login'
+

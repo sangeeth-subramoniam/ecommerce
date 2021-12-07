@@ -12,6 +12,10 @@ adding discount to products from homepage for admin - DONE
 
 sort popular still not perfect --- looks fine now... but still keep an eye
 
+set functionality for share and report buttons in the product home page
+
+when unauthenticated users open page show a warning or a alert popup to sign in
+
 
 
         PENDING

@@ -66,7 +66,7 @@ Product-Home
             <br>
             <h4>Total items : {{cart_count}}</h4> <br>
             <h4>Total cost : {{totalcost}}</h4><br><br>
-            <button class="btn btn-success" style="width: 100%;">Place Order</button>
+            <button class="btn btn-success" style="width: 100%;" onclick="return confirm('Are you sure you want to place the order?')">Place Order</button>
         </div>
         
 
@@ -108,7 +108,6 @@ Product-Home
 {% block body %}
 
         <br>
-        <h1 id="top-section" style="align-items: center;"> Welcome , {{user.username}}!!</h1> 
         <br>
         <form action = " {% url 'homepage:home' %}" enctype="multipart/form-data" method="POST">
             <div class="container sign-form">
@@ -153,9 +152,13 @@ Product-Home
         <div class="container" >
 
             <hr>
+
+            <h2 style="text-align: center;" > <u> <i class="fas fa-receipt"></i></i> Order Details </u> </h2>
+
             {% for orderdetailspdt in myorders %}
 
                 <div class="container" style="overflow: hidden; background: #faf9f9;">
+                    <br>
                     <div class="row">
                         <div class="col-lg-7">
                             <h1 style=" text-align: left; margin-left: 10%; margin-top: 1%; text-transform: uppercase;">{{orderdetailspdt.product.productname}}</h1><br>

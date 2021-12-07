@@ -107,11 +107,11 @@ Homepage
             <div class="container sub-nav-container" style="background: #d3d3d3; height:3%; border-radius: 15px 15px 15px 15px; text-align: center;" >
                 <div class="row center">
                         <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
-                            <input style="background-color: #485e79;" class="form-control maniplulate-button " type="submit" value="sort_asc" name="manipulation_type" disabled>
+                            <input style="background-color: #485e79;" class="form-control maniplulate-button " type="submit" value=" ↑ sort_asc" name="manipulation_type" disabled>
                         </div>
                     
                     <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
-                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value="sort_desc" name="manipulation_type" disabled>
+                        <input  style="background-color: #485e79;" class="form-control maniplulate-button" type="submit" value=" ↓ sort_desc" name="manipulation_type" disabled>
                     </div>
 
                     <div class="col-lg-3 bodynav" style="margin-top: 1.5%;">
@@ -149,5 +149,49 @@ Homepage
                 <br><br><br><br>
             {% endfor %}
         </div>
+        <script>
+
+            window.addEventListener("load", function(){
+
+                Swal.fire({
+                    position: 'center',
+                    icon: 'info',
+                    title: 'Please sign in to continue shopping! ',
+                    color : "#485e79",
+                    background: "white",
+                    //backdrop: "linear-gradient(blue, gray)",
+                    showConfirmButton: true,
+                    confirmButtonColor: "#485e79",
+                    timer: 5000
+
+
+                    /*
+                        EXTRA OPTIONS OF SWEETALERT 2
+                        position: "bottom",
+                        backdrop: "linear-gradient(yellow, orange)",
+                        background: "white",
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        showConfirmButton: false,
+                        showCancelButton: false,
+                        timer: 3000
+                    */
+            });
+
+            window.setTimeout(function(){
+
+                // Move to a new location or you can do something else
+                window.location.href="/register/signin"
+
+            }, 3000);
+        });
+
+    
+    </script>
 {% endblock %}
+
+
+
 </div>
+

@@ -7,6 +7,23 @@ from datetime import datetime
 from reviews.forms import reviewForm
 from .forms import productsForm
 
+def review_roundoff(val):
+    print('rounding off ')
+    temp = val - int(val)
+    if temp == 0.5:
+        return val
+    else:
+        if(temp > 0.5):
+            return (int(val)+ 1)
+        else:
+            return int(val)
+
+
+
+
+
+
+
 
 # Create your views here.
 def home(request,pk):
@@ -44,6 +61,24 @@ def home(request,pk):
 
     like_count = like.objects.filter(liked_product__productid = pk ).count()
 
+    starsitr = reviews.objects.filter(reviewed_product__productid = pk)
+    starval = 0
+    for strs in starsitr:
+        starval += strs.stars
+
+    if(starsitr.count() != 0):
+        pdt_star = starval / starsitr.count()
+    else:
+        pdt_star = 0
+    
+
+    #print(starsitr , ' and val is' ,  pdt_star)
+    print('afte3r calc the val is' ,  review_roundoff(pdt_star))
+    pdt_rating = review_roundoff(pdt_star)
+    
+
+    
+
     pdtreviews = reviews.objects.filter(reviewed_product__productid = pk).order_by('-reviewed_time').first()
 
 
@@ -58,7 +93,8 @@ def home(request,pk):
         'like_count' : like_count,
         'liked' : liked,
         'reviewForm' : reviewform,
-        'pdtreviews' : pdtreviews
+        'pdtreviews' : pdtreviews,
+        'pdt_rating' : pdt_rating,
     }
 
 
